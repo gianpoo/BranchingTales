@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.window__container {
+  display: block;
+  position: center;
+  right: 102px;
+  top: 100px;
+  min-width: 275px;
+  height: 120px;
+  z-index: 10000;
+  background: gray;
+}
