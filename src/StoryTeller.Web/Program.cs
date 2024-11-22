@@ -17,6 +17,17 @@ var appLogger = new SerilogLoggerFactory(logger)
 builder.Services.AddOptionConfigs(builder.Configuration, appLogger, builder);
 builder.Services.AddServiceConfigs(appLogger, builder);
 
+
+builder.Services.AddCors(options =>
+{
+  options.AddDefaultPolicy(
+      policy =>
+      {
+        policy.WithOrigins("http://localhost:50338");
+      });
+});
+
+
 builder.Services.AddFastEndpoints()
                 .SwaggerDocument(o =>
                 {
@@ -27,6 +38,8 @@ builder.Services.AddFastEndpoints()
 var app = builder.Build();
 
 await app.UseAppMiddleware();
+
+app.UseCors();
 
 app.Run();
 
