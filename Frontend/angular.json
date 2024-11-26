@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Frontend": {
+    "StoryTellerFrontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/frontend",
+            "outputPath": "dist/story-teller-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -67,21 +67,21 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Frontend:build:production"
+              "buildTarget": "StoryTellerFrontend:build:production"
             },
             "development": {
-              "buildTarget": "Frontend:build:development"
+              "buildTarget": "StoryTellerFrontend:build:development"
             }
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 51189
+            "port": 50338
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Frontend:build"
+            "buildTarget": "StoryTellerFrontend:build"
           }
         },
         "test": {
@@ -105,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "02851b1a-d468-49d8-9d05-c9aefcdd5f4d"
   }
 }
