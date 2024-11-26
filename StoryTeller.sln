@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoryTeller.UnitTests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoryTeller.UseCases", "src\StoryTeller.UseCases\StoryTeller.UseCases.csproj", "{B74A78FF-B79E-4C38-A9C7-084A90990CAD}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "FrontEnd", "FrontEnd\FrontEnd.esproj", "{6396BB67-30F2-484C-A7C9-1F23E6A7E233}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Frontend", "FrontEnd\Frontend.esproj", "{6396BB67-30F2-484C-A7C9-1F23E6A7E233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
