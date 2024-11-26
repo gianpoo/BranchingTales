@@ -23,7 +23,12 @@ public class Update(IMediator _mediator)
     UpdateContributorRequest request,
     CancellationToken cancellationToken)
   {
-    var result = await _mediator.Send(new UpdateContributorCommand(request.Id, request.Name!), cancellationToken);
+    // Include NewPhoneNumber in the command
+    var result = await _mediator.Send(new UpdateContributorCommand(
+      request.Id,
+      request.Name!,
+      request.PhoneNumber), // Pass the phone number
+      cancellationToken);
 
     if (result.Status == ResultStatus.NotFound)
     {

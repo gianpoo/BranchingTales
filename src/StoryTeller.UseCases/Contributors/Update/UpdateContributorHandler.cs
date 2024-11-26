@@ -13,7 +13,14 @@ public class UpdateContributorHandler(IRepository<Contributor> _repository)
       return Result.NotFound();
     }
 
+    // Update Name
     existingContributor.UpdateName(request.NewName!);
+
+    // Update Phone Number if provided (it's optional)
+    if (!string.IsNullOrEmpty(request.NewPhoneNumber))
+    {
+      existingContributor.SetPhoneNumber(request.NewPhoneNumber);
+    }
 
     await _repository.UpdateAsync(existingContributor, cancellationToken);
 

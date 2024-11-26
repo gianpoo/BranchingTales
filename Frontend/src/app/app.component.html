@@ -1,36 +1,56 @@
 <div class="container">
-  <h2>Contributors List</h2>
+  <h2>Contributors Management</h2>
 
-  <button (click)="fetchContributors()" class="fetch-button">
-    Fetch Contributors
-  </button>
+  <!-- Fetch Contributors -->
+  <button (click)="fetchContributors()" class="fetch-button">Fetch Contributors</button>
 
+  <!-- Display Contributors -->
   <div *ngIf="isLoading" class="loading">
     <p>Loading contributors...</p>
   </div>
-
   <div *ngIf="error" class="error">
     {{ error }}
   </div>
-
-  <table *ngIf="showContributors && !isLoading && !error && contributors.length > 0" class="contributors-table">
+  <table *ngIf="showContributors && contributors.length > 0" class="contributors-table">
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Phone Number</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let contributor of contributors">
         <td>{{ contributor.id }}</td>
-        <td>{{ contributor.name }}</td>
-        <td>{{ contributor.phoneNumber }}</td>
+        <td>{{ contributor.name || 'No name available' }}</td>
+        <td>{{ formatPhoneNumber(contributor.phoneNumber) }}</td>
+        <td>
+          <button (click)="setUpdateForm(contributor)">Update</button>
+          <button (click)="deleteContributor(contributor.id)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
-
-  <div *ngIf="showContributors && !isLoading && !error && contributors.length === 0" class="no-contributors">
+  <div *ngIf="showContributors && contributors.length === 0" class="no-contributors">
     <p>No contributors found.</p>
+  </div>
+
+  <!-- Add Contributor Form -->
+  <h3>Add Contributor</h3>
+  <form (ngSubmit)="addContributor()" #addContributorForm="ngForm">
+    <input type="text" [(ngModel)]="newContributor.name" name="name" placeholder="Name" required />
+    <input type="text" [(ngModel)]="newContributor.phoneNumber" name="phoneNumber" placeholder="Phone Number" />
+    <button type="submit">Add</button>
+  </form>
+
+  <!-- Update Contributor Form -->
+  <div *ngIf="editingContributor">
+    <h3>Update Contributor</h3>
+    <form (ngSubmit)="updateContributor()" #updateContributorForm="ngForm">
+      <input type="text" [(ngModel)]="editingContributor.name" name="name" placeholder="Name" required />
+      <input type="text" [(ngModel)]="editingContributor.phoneNumber" name="phoneNumber" placeholder="Phone Number" />
+      <button type="submit">Update</button>
+    </form>
   </div>
 </div>

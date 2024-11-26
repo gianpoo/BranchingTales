@@ -7,37 +7,35 @@ GET {{host}}:{{port}}/Contributors
 
 ###
 
-// Get a specific contributor
-@id_to_get=1
-GET {{host}}:{{port}}/Contributors/{{id_to_get}}
+# Get a specific contributor
+GET {{host}}:{{port}}/Contributors/{{id}}
 
 ###
 
-// Add a new contributor
+# Add a new contributor
 POST {{host}}:{{port}}/Contributors
 Content-Type: application/json
 
 {
-  "name": "John Doe 4",
-  "email": "test@test",
-  "phoneNumber": "1123456788"
+  "name": "{{name}}",
+  "email": "{{email}}",
+  "phoneNumber": "{{phoneNumber}}"
 }
 
 ###
 
-// Update a contributor
-@id_to_update=1
-PUT {{host}}:{{port}}/Contributors/{{id_to_update}}
+# Update a contributor
+PUT {{host}}:{{port}}/Contributors/{{id}}
 Content-Type: application/json
 
 {
-  "id": {{id_to_update}},
-  "name": "ardalis2"
+  "id": {{id}},
+  "name": "{{name}}",
+  "email": "{{email}}",
+  "phoneNumber": "{{phoneNumber}}"
 }
 
 ###
 
-// Delete a contributor
-@id_to_delete=1
-DELETE {{host}}:{{port}}/Contributors/{{id_to_delete}}
-
+# Delete a contributor
+DELETE {{host}}:{{port}}/Contributors/{{id}}

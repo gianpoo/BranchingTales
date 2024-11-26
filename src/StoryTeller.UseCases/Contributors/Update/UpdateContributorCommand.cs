@@ -1,3 +1,3 @@
 ﻿namespace StoryTeller.UseCases.Contributors.Update;
 
-public record UpdateContributorCommand(int ContributorId, string NewName) : ICommand<Result<ContributorDTO>>;
+public record UpdateContributorCommand(int ContributorId, string NewName, string? NewPhoneNumber) : ICommand<Result<ContributorDTO>>;
