@@ -1,0 +1,32 @@
+<div class="card">
+  <h3>Search Prompt</h3>
+  <div class="search-container">
+    <input 
+      type="number" 
+      [(ngModel)]="promptId" 
+      placeholder="Enter Prompt ID" 
+      class="search-input"
+    />
+    <button (click)="searchPrompt()" class="search-button">Search</button>
+  </div>
+
+  <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
+  <app-error-message [error]="error"></app-error-message>
+
+  <div *ngIf="prompt" class="prompt-result">
+    <table class="contributors-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Text</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ prompt.id }}</td>
+          <td>{{ prompt.text }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 

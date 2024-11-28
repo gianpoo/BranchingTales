@@ -44,3 +44,18 @@ DELETE {{host}}:{{port}}/Contributors/{{id}}
 
 # Search contributors by name
 GET {{host}}:{{port}}/Contributors/search/{{searchName}}
+
+###
+
+# Get a specific prompt
+GET {{host}}:{{port}}/Prompts/{{id}}
+
+###
+
+# Add a new prompt
+POST {{host}}:{{port}}/Prompts
+Content-Type: application/json
+
+{
+    "text": "{{text}}"
+}

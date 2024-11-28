@@ -1,7 +1,7 @@
-﻿namespace StoryTeller.UnitTests.UseCases.Contributors
+﻿namespace StoryTeller.UnitTests.UseCases.Contributors;
+
+public class CreateContributorHandlerHandle
 {
-  public class CreateContributorHandlerHandle
-  {
     private readonly string _testName = "test name";
     private readonly IRepository<Contributor> _repository = Substitute.For<IRepository<Contributor>>();
     private CreateContributorHandler _handler;
@@ -36,12 +36,9 @@
     [Fact]
     public async Task ReturnsFailureGivenInvalidName()
     {
-      // Execute the handler with an invalid (empty) name
-      var result = await _handler.Handle(new CreateContributorCommand("", null), CancellationToken.None);
+        var result = await _handler.Handle(new CreateContributorCommand("", null), CancellationToken.None);
 
-      // Ensure that the result is a failure due to the missing name
-      result.IsSuccess.Should().BeFalse();
-      result.Error.Should().Be("Contributor name is required.");
+        result.IsSuccess.Should().BeFalse();
+        result.Errors.First().Should().Be("Contributor name is required.");
     }
-  }
 }

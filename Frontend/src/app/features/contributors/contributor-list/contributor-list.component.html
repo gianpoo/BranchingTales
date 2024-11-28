@@ -1,0 +1,84 @@
+<div class="card">
+  <h3>Search Contributors</h3>
+  <div class="search-container">
+    <div class="search-group">
+      <select class="form-input search-type" [(ngModel)]="searchType">
+        <option value="name">Name</option>
+        <option value="id">ID</option>
+      </select>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        [placeholder]="searchType === 'name' ? 'Search contributors...' : 'Enter contributor ID'" 
+        class="form-input search-input" 
+      />
+    </div>
+    <button (click)="searchContributors()" class="search-button">Search</button>
+    <button (click)="fetchContributors()" class="fetch-button">Fetch All</button>
+  </div>
+</div>
+  
+  <div class="card">
+    <h3>Add New Contributor</h3>
+    <div class="add-form">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="newContributorName" placeholder="Contributor name" class="form-input" />
+        <input type="text" [(ngModel)]="newContributorPhone" placeholder="Phone number (optional)" class="form-input" />
+      </div>
+      <button (click)="addContributor()" class="add-button">Add Contributor</button>
+    </div>
+  </div>
+  
+  <div *ngIf="updateContributorId" class="card">
+    <h3>Update Contributor</h3>
+    <div class="update-form">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="updateContributorName" placeholder="New name" class="form-input" />
+        <input type="text" [(ngModel)]="updateContributorPhone" placeholder="Phone number (optional)" class="form-input" />
+      </div>
+      <button (click)="updateContributor()" class="update-button">Update</button>
+    </div>
+  </div>
+  
+  <div *ngIf="isLoading" class="status-message loading">Loading...</div>
+  <div *ngIf="error" class="status-message error">{{ error }}</div>
+  
+  <div class="card table-card">
+    <table class="contributors-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contributor of contributors">
+          <td>{{ contributor.id }}</td>
+          <td>{{ contributor.name }}</td>
+          <td>{{ contributor.phoneNumber || 'N/A' }}</td>
+          <td class="actions-cell">
+            <button (click)="startUpdate(contributor)" class="action-button update">Update</button>
+            <button (click)="deleteContributor(contributor.id)" class="action-button delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<style>
+.search-group {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.search-type {
+  width: 100px;
+}
+
+.search-input {
+  flex: 1;
+}
+</style>
