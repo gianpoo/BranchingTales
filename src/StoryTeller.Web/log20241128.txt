@@ -1,0 +1,435 @@
+2024-11-28 11:05:18.174 +01:00 [INF] Registered 5 endpoints in 1.322 milliseconds.
+2024-11-28 11:05:19.905 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:05:20.150 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:05:20.317 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:05:20.324 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:05:20.387 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:05:20.388 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:05:20.389 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:05:24.474 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:05:24.504 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:05:24.508 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:05:24.528 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:05:24.529 +01:00 [INF] Property Skip : null
+2024-11-28 11:05:24.530 +01:00 [INF] Property Take : null
+2024-11-28 11:05:24.698 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:05:24.704 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 173 ms
+2024-11-28 11:05:24.710 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:05:24.716 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 245.4256ms
+2024-11-28 11:05:31.823 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:05:31.826 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:05:31.827 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 4.1707ms
+2024-11-28 11:05:31.830 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:05:33.695 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:05:33.697 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:05:33.697 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 2.5044ms
+2024-11-28 11:05:33.700 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:05:37.962 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:05:37.964 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:05:37.964 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:05:37.965 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:05:37.966 +01:00 [INF] Property Skip : null
+2024-11-28 11:05:37.967 +01:00 [INF] Property Take : null
+2024-11-28 11:05:38.017 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:05:38.019 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 51 ms
+2024-11-28 11:05:38.020 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:05:38.021 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 58.9775ms
+2024-11-28 11:05:38.766 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:05:38.768 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:05:38.769 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 3.1155ms
+2024-11-28 11:05:38.771 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:07.654 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/ - null null
+2024-11-28 11:07:07.698 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:07.699 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/ - 404 0 null 44.7216ms
+2024-11-28 11:07:07.701 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/, Response status code: 404
+2024-11-28 11:07:12.637 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:12.639 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:12.640 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 3.5468ms
+2024-11-28 11:07:12.642 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:13.516 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:07:13.519 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:13.520 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:13.521 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:07:13.521 +01:00 [INF] Property Skip : null
+2024-11-28 11:07:13.522 +01:00 [INF] Property Take : null
+2024-11-28 11:07:13.525 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:07:13.526 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 3 ms
+2024-11-28 11:07:13.528 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:13.529 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 12.4206ms
+2024-11-28 11:07:14.474 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:14.477 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:14.478 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 3.6981ms
+2024-11-28 11:07:14.480 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:15.465 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:15.468 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:15.468 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 2.9268ms
+2024-11-28 11:07:15.470 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:15.948 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:15.951 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:15.951 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 2.8736ms
+2024-11-28 11:07:15.953 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:16.228 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:16.230 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:16.231 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 3.4623ms
+2024-11-28 11:07:16.233 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:16.935 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:07:16.937 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:16.937 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:16.938 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:07:16.939 +01:00 [INF] Property Skip : null
+2024-11-28 11:07:16.939 +01:00 [INF] Property Take : null
+2024-11-28 11:07:16.941 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:07:16.942 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 1 ms
+2024-11-28 11:07:16.943 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:16.944 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 9.279ms
+2024-11-28 11:07:18.487 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:07:18.490 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:18.490 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:18.491 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:07:18.491 +01:00 [INF] Property Skip : null
+2024-11-28 11:07:18.492 +01:00 [INF] Property Take : null
+2024-11-28 11:07:18.494 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:07:18.495 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 2 ms
+2024-11-28 11:07:18.496 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:18.496 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 8.9959ms
+2024-11-28 11:07:19.108 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:19.111 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:19.111 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 3.5211ms
+2024-11-28 11:07:19.113 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:19.807 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/snow - null null
+2024-11-28 11:07:19.810 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:19.811 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/snow - 404 0 null 3.5722ms
+2024-11-28 11:07:19.813 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/snow, Response status code: 404
+2024-11-28 11:07:23.258 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:07:23.260 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:23.260 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:23.261 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:07:23.261 +01:00 [INF] Property Skip : null
+2024-11-28 11:07:23.262 +01:00 [INF] Property Take : null
+2024-11-28 11:07:23.263 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:07:23.264 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 1 ms
+2024-11-28 11:07:23.265 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:23.265 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 6.9366ms
+2024-11-28 11:07:52.010 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - null null
+2024-11-28 11:07:52.036 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:52.036 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - 404 0 null 26.2169ms
+2024-11-28 11:07:52.038 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/Ardalis, Response status code: 404
+2024-11-28 11:07:53.115 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - null null
+2024-11-28 11:07:53.121 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:53.121 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - 404 0 null 6.1696ms
+2024-11-28 11:07:53.124 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/Ardalis, Response status code: 404
+2024-11-28 11:07:54.015 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:07:54.017 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:54.017 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:54.018 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:07:54.018 +01:00 [INF] Property Skip : null
+2024-11-28 11:07:54.019 +01:00 [INF] Property Take : null
+2024-11-28 11:07:54.020 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:07:54.021 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 1 ms
+2024-11-28 11:07:54.022 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:07:54.023 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 8.0484ms
+2024-11-28 11:07:59.966 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - null null
+2024-11-28 11:07:59.969 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:07:59.969 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - 404 0 null 3.3896ms
+2024-11-28 11:07:59.971 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/Ardalis, Response status code: 404
+2024-11-28 11:08:00.944 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - null null
+2024-11-28 11:08:00.946 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:08:00.946 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - 404 0 null 2.6822ms
+2024-11-28 11:08:00.949 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/Ardalis, Response status code: 404
+2024-11-28 11:08:01.454 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - null null
+2024-11-28 11:08:01.456 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:08:01.457 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/Ardalis - 404 0 null 3.0459ms
+2024-11-28 11:08:01.459 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/Ardalis, Response status code: 404
+2024-11-28 11:08:04.227 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:08:04.229 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:08:04.230 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:08:04.231 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:08:04.231 +01:00 [INF] Property Skip : null
+2024-11-28 11:08:04.232 +01:00 [INF] Property Take : null
+2024-11-28 11:08:04.233 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:08:04.234 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 1 ms
+2024-11-28 11:08:04.235 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:08:04.236 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 8.9336ms
+2024-11-28 11:08:08.460 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/Snowfrog - null null
+2024-11-28 11:08:08.462 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:08:08.463 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/Snowfrog - 404 0 null 3.1435ms
+2024-11-28 11:08:08.465 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/Snowfrog, Response status code: 404
+2024-11-28 11:08:14.377 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/1 - null null
+2024-11-28 11:08:14.379 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:08:14.380 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors/{ContributorId:int}'
+2024-11-28 11:08:14.417 +01:00 [INF] Handling GetContributorQuery
+2024-11-28 11:08:14.419 +01:00 [INF] Property ContributorId : 1
+2024-11-28 11:08:14.495 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__contributorId_0
+LIMIT 1
+2024-11-28 11:08:14.542 +01:00 [INF] Handled GetContributorQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Contributors.ContributorDTO] in 122 ms
+2024-11-28 11:08:14.545 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors/{ContributorId:int}'
+2024-11-28 11:08:14.545 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/1 - 200 null application/json; charset=utf-8 168.4235ms
+2024-11-28 11:08:19.152 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/1 - null null
+2024-11-28 11:08:19.153 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:08:19.154 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/1 - 404 0 null 2.4558ms
+2024-11-28 11:08:19.155 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/1, Response status code: 404
+2024-11-28 11:13:44.811 +01:00 [INF] Registered 5 endpoints in 439 milliseconds.
+2024-11-28 11:13:45.895 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:13:46.083 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:13:46.214 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:13:46.219 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:13:46.267 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:13:46.270 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:13:46.271 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:14:03.708 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:14:03.737 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:14:03.740 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:14:03.771 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:14:03.773 +01:00 [INF] Property Skip : null
+2024-11-28 11:14:03.774 +01:00 [INF] Property Take : null
+2024-11-28 11:14:03.913 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:14:03.920 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 145 ms
+2024-11-28 11:14:03.927 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:14:03.931 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 227.3326ms
+2024-11-28 11:15:13.028 +01:00 [INF] Registered 5 endpoints in 463 milliseconds.
+2024-11-28 11:15:13.799 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:15:14.091 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:15:14.229 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:15:14.233 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:15:14.721 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:15:14.722 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:15:14.722 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:15:16.939 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:15:16.974 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:15:16.976 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:15:17.000 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:15:17.001 +01:00 [INF] Property Skip : null
+2024-11-28 11:15:17.002 +01:00 [INF] Property Take : null
+2024-11-28 11:15:17.176 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:15:17.182 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 178 ms
+2024-11-28 11:15:17.190 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:15:17.194 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 261.6889ms
+2024-11-28 11:21:28.002 +01:00 [INF] Registered 5 endpoints in 282 milliseconds.
+2024-11-28 11:21:28.726 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:21:28.942 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:21:29.117 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:21:29.124 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:21:29.215 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:21:29.216 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:21:29.216 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:22:22.585 +01:00 [INF] Registered 5 endpoints in 278 milliseconds.
+2024-11-28 11:22:23.211 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:22:23.407 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:22:23.545 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:22:23.550 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:22:23.599 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:22:23.601 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:22:23.602 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:24:29.098 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Contributors/search/arda - null null
+2024-11-28 11:24:29.175 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Contributors/search/arda - 404 0 null 82.5803ms
+2024-11-28 11:24:29.183 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/arda, Response status code: 404
+2024-11-28 11:25:28.288 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Contributors/search/?searchName=arda - null null
+2024-11-28 11:25:28.293 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Contributors/search/?searchName=arda - 404 0 null 4.9675ms
+2024-11-28 11:25:28.296 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/, Response status code: 404
+2024-11-28 11:28:42.910 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Contributors/search/arda - null null
+2024-11-28 11:28:42.914 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Contributors/search/arda - 404 0 null 3.7802ms
+2024-11-28 11:28:42.916 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Contributors/search/arda, Response status code: 404
+2024-11-28 11:35:41.553 +01:00 [INF] Registered 6 endpoints in 594 milliseconds.
+2024-11-28 11:35:42.320 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:35:42.524 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:35:42.717 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:35:42.725 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:35:43.297 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:35:43.298 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:35:43.299 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:45:51.389 +01:00 [INF] Registered 6 endpoints in 338 milliseconds.
+2024-11-28 11:45:52.235 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:45:52.456 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:45:52.602 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:45:52.608 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:45:53.348 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:45:53.349 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:45:53.351 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:50:03.236 +01:00 [INF] Registered 6 endpoints in 1.129 milliseconds.
+2024-11-28 11:50:04.630 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:50:04.933 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:50:05.117 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:50:05.122 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:50:05.778 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:50:05.779 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:50:05.780 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:50:31.348 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Contributors/search/arda - null null
+2024-11-28 11:50:31.413 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:50:31.461 +01:00 [INF] Handling SearchByNameQuery
+2024-11-28 11:50:31.463 +01:00 [INF] Property Name : arda
+2024-11-28 11:50:31.635 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__Format_1='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE lower("c"."Name") LIKE @__Format_1
+2024-11-28 11:50:31.707 +01:00 [INF] Handled SearchByNameQuery with Ardalis.Result.Result`1[System.Collections.Generic.List`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 243 ms
+2024-11-28 11:50:31.719 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:50:31.724 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Contributors/search/arda - 200 null application/json; charset=utf-8 381.9833ms
+2024-11-28 11:53:53.250 +01:00 [INF] Registered 6 endpoints in 623 milliseconds.
+2024-11-28 11:53:54.224 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:53:54.423 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:53:54.562 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:53:54.567 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:53:55.084 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:53:55.085 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:53:55.085 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:53:57.441 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/arda - null null
+2024-11-28 11:53:57.470 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:53:57.473 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:53:57.505 +01:00 [INF] Handling SearchByNameQuery
+2024-11-28 11:53:57.507 +01:00 [INF] Property Name : arda
+2024-11-28 11:53:57.700 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__Format_1='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE lower("c"."Name") LIKE @__Format_1
+2024-11-28 11:53:57.749 +01:00 [INF] Handled SearchByNameQuery with Ardalis.Result.Result`1[System.Collections.Generic.List`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 241 ms
+2024-11-28 11:53:57.757 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:53:57.764 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/arda - 200 null application/json; charset=utf-8 326.7318ms
+2024-11-28 11:54:00.720 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:54:00.722 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:54:00.723 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:54:00.732 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:54:00.733 +01:00 [INF] Property Skip : null
+2024-11-28 11:54:00.734 +01:00 [INF] Property Take : null
+2024-11-28 11:54:00.794 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:54:00.799 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 63 ms
+2024-11-28 11:54:00.801 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:54:00.802 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 81.6518ms
+2024-11-28 11:54:02.731 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/arda - null null
+2024-11-28 11:54:02.733 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:54:02.735 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:54:02.736 +01:00 [INF] Handling SearchByNameQuery
+2024-11-28 11:54:02.736 +01:00 [INF] Property Name : arda
+2024-11-28 11:54:02.739 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__Format_1='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE lower("c"."Name") LIKE @__Format_1
+2024-11-28 11:54:02.741 +01:00 [INF] Handled SearchByNameQuery with Ardalis.Result.Result`1[System.Collections.Generic.List`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 4 ms
+2024-11-28 11:54:02.741 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:54:02.742 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/arda - 200 null application/json; charset=utf-8 11.5957ms
+2024-11-28 11:54:04.346 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:54:04.349 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:54:04.349 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:54:04.350 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:54:04.350 +01:00 [INF] Property Skip : null
+2024-11-28 11:54:04.351 +01:00 [INF] Property Take : null
+2024-11-28 11:54:04.360 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:54:04.362 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 9 ms
+2024-11-28 11:54:04.362 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:54:04.363 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 16.5625ms
+2024-11-28 11:54:05.021 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/arda - null null
+2024-11-28 11:54:05.023 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:54:05.023 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:54:05.025 +01:00 [INF] Handling SearchByNameQuery
+2024-11-28 11:54:05.026 +01:00 [INF] Property Name : arda
+2024-11-28 11:54:05.029 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__Format_1='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE lower("c"."Name") LIKE @__Format_1
+2024-11-28 11:54:05.030 +01:00 [INF] Handled SearchByNameQuery with Ardalis.Result.Result`1[System.Collections.Generic.List`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 4 ms
+2024-11-28 11:54:05.031 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:54:05.032 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/arda - 200 null application/json; charset=utf-8 11.1312ms
+2024-11-28 11:54:17.381 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:54:17.382 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:54:17.383 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:54:17.384 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:54:17.385 +01:00 [INF] Property Skip : null
+2024-11-28 11:54:17.385 +01:00 [INF] Property Take : null
+2024-11-28 11:54:17.387 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:54:17.388 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 2 ms
+2024-11-28 11:54:17.389 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:54:17.389 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 8.6218ms
+2024-11-28 11:54:22.941 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors/search/doe - null null
+2024-11-28 11:54:22.943 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:54:22.944 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:54:22.945 +01:00 [INF] Handling SearchByNameQuery
+2024-11-28 11:54:22.945 +01:00 [INF] Property Name : doe
+2024-11-28 11:54:22.947 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__Format_1='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE lower("c"."Name") LIKE @__Format_1
+2024-11-28 11:54:22.948 +01:00 [INF] Handled SearchByNameQuery with Ardalis.Result.Result`1[System.Collections.Generic.List`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 2 ms
+2024-11-28 11:54:22.949 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors/search/{SearchName}'
+2024-11-28 11:54:22.950 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors/search/doe - 200 null application/json; charset=utf-8 9.7946ms
+2024-11-28 11:57:03.107 +01:00 [INF] Registered 6 endpoints in 494 milliseconds.
+2024-11-28 11:57:03.938 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 11:57:04.148 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 11:57:04.287 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 11:57:04.292 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 11:57:04.877 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 11:57:04.878 +01:00 [INF] Hosting environment: Development
+2024-11-28 11:57:04.878 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 11:57:17.619 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 11:57:17.648 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:57:17.651 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:57:17.670 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 11:57:17.672 +01:00 [INF] Property Skip : null
+2024-11-28 11:57:17.672 +01:00 [INF] Property Take : null
+2024-11-28 11:57:17.828 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 11:57:17.833 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 160 ms
+2024-11-28 11:57:17.841 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 11:57:17.846 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 229.5743ms
+2024-11-28 11:57:23.394 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57679/Contributors - null null
+2024-11-28 11:57:23.397 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:57:23.399 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57679/Contributors - 204 null null 4.4163ms
+2024-11-28 11:57:23.400 +01:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Contributors - application/json 30
+2024-11-28 11:57:23.403 +01:00 [INF] CORS policy execution successful.
+2024-11-28 11:57:23.403 +01:00 [INF] Executing endpoint 'HTTP: POST /Contributors'
+2024-11-28 11:57:23.448 +01:00 [INF] Executed endpoint 'HTTP: POST /Contributors'
+2024-11-28 11:57:23.450 +01:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Contributors - 400 null application/problem+json; charset=utf-8 49.1023ms

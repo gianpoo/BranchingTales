@@ -1,56 +1,105 @@
 <div class="container">
   <h2>Contributors Management</h2>
 
-  <!-- Fetch Contributors -->
-  <button (click)="fetchContributors()" class="fetch-button">Fetch Contributors</button>
+  <div class="content-wrapper">
+    <!-- Search Section -->
+    <div class="card">
+      <div class="search-container">
+        <select [(ngModel)]="searchType" class="search-type">
+          <option value="name">Search by Name</option>
+          <option value="id">Search by ID</option>
+        </select>
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          [placeholder]="searchType === 'name' ? 'Enter name to search...' : 'Enter ID...'"
+          class="search-input"
+          (keyup.enter)="searchContributors()"
+        />
+        <div class="button-group">
+          <button (click)="searchContributors()" class="search-button">Search</button>
+          <button (click)="fetchContributors()" class="fetch-button">Show All</button>
+        </div>
+      </div>
+    </div>
 
-  <!-- Display Contributors -->
-  <div *ngIf="isLoading" class="loading">
-    <p>Loading contributors...</p>
-  </div>
-  <div *ngIf="error" class="error">
-    {{ error }}
-  </div>
-  <table *ngIf="showContributors && contributors.length > 0" class="contributors-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Phone Number</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contributor of contributors">
-        <td>{{ contributor.id }}</td>
-        <td>{{ contributor.name || 'No name available' }}</td>
-        <td>{{ formatPhoneNumber(contributor.phoneNumber) }}</td>
-        <td>
-          <button (click)="setUpdateForm(contributor)">Update</button>
-          <button (click)="deleteContributor(contributor.id)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div *ngIf="showContributors && contributors.length === 0" class="no-contributors">
-    <p>No contributors found.</p>
-  </div>
+    <!-- Add Contributor Section -->
+    <div class="card">
+      <h3>Add Contributor</h3>
+      <form (ngSubmit)="addContributor()" #addContributorForm="ngForm" class="add-form">
+        <input 
+          type="text" 
+          [(ngModel)]="newContributor.name" 
+          name="name" 
+          placeholder="Name" 
+          required 
+          class="form-input"
+        />
+        <input 
+          type="text" 
+          [(ngModel)]="newContributor.phoneNumber" 
+          name="phoneNumber" 
+          placeholder="Phone Number" 
+          class="form-input"
+        />
+        <button type="submit" class="add-button">Add</button>
+      </form>
+    </div>
 
-  <!-- Add Contributor Form -->
-  <h3>Add Contributor</h3>
-  <form (ngSubmit)="addContributor()" #addContributorForm="ngForm">
-    <input type="text" [(ngModel)]="newContributor.name" name="name" placeholder="Name" required />
-    <input type="text" [(ngModel)]="newContributor.phoneNumber" name="phoneNumber" placeholder="Phone Number" />
-    <button type="submit">Add</button>
-  </form>
+    <!-- Status Messages -->
+    <div *ngIf="isLoading" class="status-message loading">
+      Loading contributors...
+    </div>
+    <div *ngIf="error" class="status-message error">
+      {{ error }}
+    </div>
 
-  <!-- Update Contributor Form -->
-  <div *ngIf="editingContributor">
-    <h3>Update Contributor</h3>
-    <form (ngSubmit)="updateContributor()" #updateContributorForm="ngForm">
-      <input type="text" [(ngModel)]="editingContributor.name" name="name" placeholder="Name" required />
-      <input type="text" [(ngModel)]="editingContributor.phoneNumber" name="phoneNumber" placeholder="Phone Number" />
-      <button type="submit">Update</button>
-    </form>
+    <!-- Contributors Table -->
+    <div class="card table-card" *ngIf="showContributors && contributors.length > 0">
+      <table class="contributors-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contributor of contributors">
+            <td>{{ contributor.id }}</td>
+            <td>{{ contributor.name || 'No name available' }}</td>
+            <td>{{ formatPhoneNumber(contributor.phoneNumber) }}</td>
+            <td class="actions-cell">
+              <button class="action-button update" (click)="setUpdateForm(contributor)">Update</button>
+              <button class="action-button delete" (click)="deleteContributor(contributor.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Update Form -->
+    <div *ngIf="editingContributor" class="card update-form-card">
+      <h3>Update Contributor</h3>
+      <form (ngSubmit)="updateContributor()" #updateContributorForm="ngForm" class="update-form">
+        <input 
+          type="text" 
+          [(ngModel)]="editingContributor.name" 
+          name="name" 
+          placeholder="Name" 
+          required 
+          class="form-input"
+        />
+        <input 
+          type="text" 
+          [(ngModel)]="editingContributor.phoneNumber" 
+          name="phoneNumber" 
+          placeholder="Phone Number" 
+          class="form-input"
+        />
+        <button type="submit" class="update-button">Update</button>
+      </form>
+    </div>
   </div>
 </div>

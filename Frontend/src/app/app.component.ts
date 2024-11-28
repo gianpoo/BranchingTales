@@ -17,6 +17,8 @@ export class AppComponent {
   isLoading = false;
   error: string | null = null;
   showContributors = false;
+  searchTerm: string = '';
+  searchType: 'name' | 'id' = 'name';
 
   // `newContributor` should only contain `name` and `phoneNumber`, without `id`
   newContributor: { name: string; phoneNumber: string | null } = { name: '', phoneNumber: null };
@@ -120,6 +122,40 @@ export class AppComponent {
       error: () => {
         this.error = 'Failed to delete contributor.';
       },
+    });
+  }
+
+  searchContributors(): void {
+    const trimmedSearch = this.searchTerm.trim();
+    if (this.searchType === 'name' && trimmedSearch.length < 3) {
+        this.error = 'Please enter at least 3 characters for name search';
+        return;
+    }
+    if (!trimmedSearch) {
+        this.error = 'Please enter a search term';
+        return;
+    }
+    
+    this.isLoading = true;
+    this.error = null;
+    
+    let url = `https://localhost:57679/Contributors/search/${encodeURIComponent(trimmedSearch)}`;
+
+    this.http.get<{ contributors: Contributor[] }>(url).subscribe({
+        next: (response) => {
+            if (Array.isArray(response)) {  // Backend returns array directly
+                this.contributors = response;
+                this.showContributors = true;
+            } else {
+                this.error = 'Invalid response format';
+            }
+            this.isLoading = false;
+        },
+        error: (err) => {
+            console.error('Search error:', err);
+            this.error = 'Failed to search contributors';
+            this.isLoading = false;
+        }
     });
   }
 }

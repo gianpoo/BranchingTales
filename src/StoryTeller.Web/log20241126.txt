@@ -2514,3 +2514,26 @@ SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
 2024-11-26 17:50:04.198 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 1 ms
 2024-11-26 17:50:04.199 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
 2024-11-26 17:50:04.200 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 8.3395ms
+2024-11-26 18:26:57.848 +01:00 [INF] Registered 5 endpoints in 1.193 milliseconds.
+2024-11-26 18:26:58.936 +01:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-26 18:26:59.178 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-26 18:26:59.352 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-26 18:26:59.358 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-26 18:26:59.426 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-26 18:26:59.427 +01:00 [INF] Hosting environment: Development
+2024-11-26 18:26:59.428 +01:00 [INF] Content root path: C:\Users\campa\Source\Repos\BranchingTales\src\StoryTeller.Web
+2024-11-26 18:27:11.093 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-26 18:27:11.157 +01:00 [INF] CORS policy execution successful.
+2024-11-26 18:27:11.163 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-26 18:27:11.209 +01:00 [INF] Handling ListContributorsQuery
+2024-11-26 18:27:11.210 +01:00 [INF] Property Skip : null
+2024-11-26 18:27:11.211 +01:00 [INF] Property Take : null
+2024-11-26 18:27:11.494 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-26 18:27:11.502 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 290 ms
+2024-11-26 18:27:11.514 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-26 18:27:11.520 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 431.747ms

@@ -39,3 +39,8 @@ Content-Type: application/json
 
 # Delete a contributor
 DELETE {{host}}:{{port}}/Contributors/{{id}}
+
+###
+
+# Search contributors by name
+GET {{host}}:{{port}}/Contributors/search/{{searchName}}
