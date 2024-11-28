@@ -5,9 +5,21 @@
       type="number" 
       [(ngModel)]="promptId" 
       placeholder="Enter Prompt ID" 
-      class="search-input"
+      class="form-input search-input"
     />
     <button (click)="searchPrompt()" class="search-button">Search</button>
+  </div>
+
+  <div class="add-form">
+    <div class="form-group">
+      <textarea 
+        [(ngModel)]="newPromptText" 
+        placeholder="Enter new prompt text" 
+        class="form-input"
+        rows="3"
+      ></textarea>
+    </div>
+    <button (click)="createPrompt()" class="add-button">Create Prompt</button>
   </div>
 
   <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>

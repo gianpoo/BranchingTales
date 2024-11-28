@@ -1661,3 +1661,421 @@ SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
 2024-11-28 14:50:27.270 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 2 ms
 2024-11-28 14:50:27.271 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
 2024-11-28 14:50:27.272 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 14.238ms
+2024-11-28 14:53:10.563 +01:00 [INF] Registered 8 endpoints in 471 milliseconds.
+2024-11-28 14:53:11.519 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 14:53:11.907 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 14:53:12.224 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 14:53:12.232 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 14:53:12.334 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 14:53:12.335 +01:00 [INF] Hosting environment: Development
+2024-11-28 14:53:12.336 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 16:28:08.391 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2024-11-28 16:28:08.441 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2024-11-28 16:28:08.452 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2024-11-28 16:28:08.457 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2024-11-28 15:28:08.4552706+00:00');
+SELECT changes();
+2024-11-28 16:28:08.525 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2024-11-28 16:28:08.543 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2024-11-28 16:28:08.549 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-28 16:28:08.565 +01:00 [INF] Applying migration '20231218143922_PhoneNumber'.
+2024-11-28 16:28:08.580 +01:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2024-11-28 16:31:10.681 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2024-11-28 16:31:10.709 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-28 16:33:46.273 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2024-11-28 16:33:46.295 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2024-11-28 16:33:46.302 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2024-11-28 16:33:46.308 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2024-11-28 16:33:46.313 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2024-11-28 15:33:46.3111709+00:00');
+SELECT changes();
+2024-11-28 16:33:46.351 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2024-11-28 16:33:46.360 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2024-11-28 16:33:46.363 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-28 16:33:46.373 +01:00 [INF] Applying migration '20231218143922_PhoneNumber'.
+2024-11-28 16:33:46.379 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2024-11-28 16:33:46.381 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20231218143922_PhoneNumber', '9.0.0');
+2024-11-28 16:33:46.382 +01:00 [INF] Applying migration '20241128153338_InitialCreate'.
+2024-11-28 16:33:46.385 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Prompts" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Prompts" PRIMARY KEY AUTOINCREMENT,
+    "Text" TEXT NOT NULL
+);
+2024-11-28 16:33:46.386 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20241128153338_InitialCreate', '9.0.0');
+2024-11-28 16:33:46.392 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2024-11-28 16:40:16.941 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2024-11-28 16:40:16.982 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2024-11-28 16:40:16.995 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2024-11-28 16:40:16.998 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2024-11-28 15:40:16.9966242+00:00');
+SELECT changes();
+2024-11-28 16:40:17.039 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2024-11-28 16:40:17.046 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2024-11-28 16:40:17.049 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-28 16:40:17.060 +01:00 [INF] Applying migration '20231218143922_PhoneNumber'.
+2024-11-28 16:40:17.069 +01:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2024-11-28 16:41:33.838 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2024-11-28 16:41:33.869 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-28 16:42:00.597 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2024-11-28 16:42:00.619 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2024-11-28 16:42:00.626 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2024-11-28 16:42:00.632 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2024-11-28 16:42:00.637 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2024-11-28 15:42:00.6352201+00:00');
+SELECT changes();
+2024-11-28 16:42:00.680 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2024-11-28 16:42:00.688 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2024-11-28 16:42:00.690 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2024-11-28 16:42:00.700 +01:00 [INF] Applying migration '20231218143922_PhoneNumber'.
+2024-11-28 16:42:00.706 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2024-11-28 16:42:00.709 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20231218143922_PhoneNumber', '9.0.0');
+2024-11-28 16:42:00.710 +01:00 [INF] Applying migration '20241128153338_InitialCreate'.
+2024-11-28 16:42:00.713 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Prompts" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Prompts" PRIMARY KEY AUTOINCREMENT,
+    "Text" TEXT NOT NULL
+);
+2024-11-28 16:42:00.715 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20241128153338_InitialCreate', '9.0.0');
+2024-11-28 16:42:00.721 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2024-11-28 16:45:03.275 +01:00 [INF] Registered 8 endpoints in 1.458 milliseconds.
+2024-11-28 16:45:04.471 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 16:45:04.675 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 16:45:04.829 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 7), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name", "Status")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2024-11-28 16:45:04.843 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name", "Status")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2024-11-28 16:45:04.844 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Prompts" ("Text")
+VALUES (@p0)
+RETURNING "Id";
+2024-11-28 16:45:04.846 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Prompts" ("Text")
+VALUES (@p0)
+RETURNING "Id";
+2024-11-28 16:45:05.073 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 16:45:05.083 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 16:45:05.897 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 16:45:05.898 +01:00 [INF] Hosting environment: Development
+2024-11-28 16:45:05.899 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 16:47:05.533 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Contributors - null null
+2024-11-28 16:47:05.600 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:47:05.625 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 16:47:05.626 +01:00 [INF] Property Skip : null
+2024-11-28 16:47:05.627 +01:00 [INF] Property Take : null
+2024-11-28 16:47:05.789 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 16:47:05.794 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 166 ms
+2024-11-28 16:47:05.810 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:47:05.817 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 289.3447ms
+2024-11-28 16:47:41.786 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/Prompts - application/json 31
+2024-11-28 16:47:41.789 +01:00 [INF] Executing endpoint 'HTTP: POST /Prompts'
+2024-11-28 16:47:41.810 +01:00 [INF] Handling CreatePromptCommand
+2024-11-28 16:47:41.811 +01:00 [INF] Property Text : sample text
+2024-11-28 16:47:41.857 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Prompts" ("Text")
+VALUES (@p0)
+RETURNING "Id";
+2024-11-28 16:47:41.861 +01:00 [INF] Handled CreatePromptCommand with Ardalis.Result.Result`1[System.Int32] in 49 ms
+2024-11-28 16:47:41.864 +01:00 [INF] Executed endpoint 'HTTP: POST /Prompts'
+2024-11-28 16:47:41.864 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/Prompts - 200 null application/json; charset=utf-8 78.1686ms
+2024-11-28 16:48:14.302 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Prompts/{1} - null null
+2024-11-28 16:48:14.304 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 16:48:14.311 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 16:48:14.312 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Prompts/{1} - 400 null application/problem+json; charset=utf-8 10.5959ms
+2024-11-28 16:48:22.415 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Prompts/{3} - null null
+2024-11-28 16:48:22.417 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 16:48:22.419 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 16:48:22.420 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Prompts/{3} - 400 null application/problem+json; charset=utf-8 4.208ms
+2024-11-28 16:48:31.955 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/Prompts/1 - null null
+2024-11-28 16:48:31.957 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 16:48:31.959 +01:00 [INF] Handling GetPromptQuery
+2024-11-28 16:48:31.960 +01:00 [INF] Property PromptId : 1
+2024-11-28 16:48:32.005 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-28 16:48:32.010 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 48 ms
+2024-11-28 16:48:32.013 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 16:48:32.013 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/Prompts/1 - 200 null application/json; charset=utf-8 58.7016ms
+2024-11-28 16:50:23.931 +01:00 [INF] Registered 8 endpoints in 577 milliseconds.
+2024-11-28 16:50:25.390 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 16:50:25.678 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 16:50:25.903 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 16:50:25.908 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 16:50:26.570 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 16:50:26.571 +01:00 [INF] Hosting environment: Development
+2024-11-28 16:50:26.571 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 16:50:35.017 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 16:50:35.051 +01:00 [INF] CORS policy execution successful.
+2024-11-28 16:50:35.054 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:35.076 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 16:50:35.078 +01:00 [INF] Property Skip : null
+2024-11-28 16:50:35.078 +01:00 [INF] Property Take : null
+2024-11-28 16:50:35.225 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 16:50:35.230 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 150 ms
+2024-11-28 16:50:35.238 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:35.243 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 230.4007ms
+2024-11-28 16:50:48.439 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57679/Contributors/2 - null null
+2024-11-28 16:50:48.442 +01:00 [INF] CORS policy execution successful.
+2024-11-28 16:50:48.444 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57679/Contributors/2 - 204 null null 5.5448ms
+2024-11-28 16:50:48.446 +01:00 [INF] Request starting HTTP/2 PUT https://localhost:57679/Contributors/2 - application/json 53
+2024-11-28 16:50:48.448 +01:00 [INF] CORS policy execution successful.
+2024-11-28 16:50:48.449 +01:00 [INF] Executing endpoint 'HTTP: PUT /Contributors/{ContributorId:int}'
+2024-11-28 16:50:48.486 +01:00 [INF] Handling UpdateContributorCommand
+2024-11-28 16:50:48.487 +01:00 [INF] Property ContributorId : 2
+2024-11-28 16:50:48.488 +01:00 [INF] Property NewName : Snowfrog
+2024-11-28 16:50:48.489 +01:00 [INF] Property NewPhoneNumber : 1234567890
+2024-11-28 16:50:48.599 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__p_0
+LIMIT 1
+2024-11-28 16:50:48.720 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@p5='?' (DbType = Int32), @p0='?' (Size = 8), @p1='?' (DbType = Int32), @p2='?', @p3='?', @p4='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Contributors" SET "Name" = @p0, "Status" = @p1, "PhoneNumber_CountryCode" = @p2, "PhoneNumber_Extension" = @p3, "PhoneNumber_Number" = @p4
+WHERE "Id" = @p5
+RETURNING 1;
+2024-11-28 16:50:48.732 +01:00 [INF] Handled UpdateContributorCommand with Ardalis.Result.Result`1[StoryTeller.UseCases.Contributors.ContributorDTO] in 243 ms
+2024-11-28 16:50:48.734 +01:00 [INF] Handling GetContributorQuery
+2024-11-28 16:50:48.735 +01:00 [INF] Property ContributorId : 2
+2024-11-28 16:50:48.752 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__contributorId_0
+LIMIT 1
+2024-11-28 16:50:48.754 +01:00 [INF] Handled GetContributorQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Contributors.ContributorDTO] in 18 ms
+2024-11-28 16:50:48.757 +01:00 [INF] Executed endpoint 'HTTP: PUT /Contributors/{ContributorId:int}'
+2024-11-28 16:50:48.759 +01:00 [INF] Request finished HTTP/2 PUT https://localhost:57679/Contributors/2 - 200 null application/json; charset=utf-8 312.8218ms
+2024-11-28 16:50:48.762 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 16:50:48.763 +01:00 [INF] CORS policy execution successful.
+2024-11-28 16:50:48.764 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:48.765 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 16:50:48.766 +01:00 [INF] Property Skip : null
+2024-11-28 16:50:48.766 +01:00 [INF] Property Take : null
+2024-11-28 16:50:48.775 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 16:50:48.776 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 9 ms
+2024-11-28 16:50:48.777 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:48.778 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 16.0988ms
+2024-11-28 16:50:54.944 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 16:50:54.946 +01:00 [INF] CORS policy execution successful.
+2024-11-28 16:50:54.947 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:54.949 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 16:50:54.949 +01:00 [INF] Property Skip : null
+2024-11-28 16:50:54.950 +01:00 [INF] Property Take : null
+2024-11-28 16:50:54.953 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 16:50:54.955 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 3 ms
+2024-11-28 16:50:54.955 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:54.956 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 11.9876ms
+2024-11-28 16:50:55.707 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-28 16:50:55.709 +01:00 [INF] CORS policy execution successful.
+2024-11-28 16:50:55.710 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:55.710 +01:00 [INF] Handling ListContributorsQuery
+2024-11-28 16:50:55.711 +01:00 [INF] Property Skip : null
+2024-11-28 16:50:55.712 +01:00 [INF] Property Take : null
+2024-11-28 16:50:55.713 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-28 16:50:55.714 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 2 ms
+2024-11-28 16:50:55.716 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-28 16:50:55.716 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 9.0781ms
+2024-11-28 17:01:32.071 +01:00 [INF] Registered 8 endpoints in 642 milliseconds.
+2024-11-28 17:01:32.913 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-28 17:01:33.115 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-28 17:01:33.265 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-28 17:01:33.271 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-28 17:01:33.892 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-28 17:01:33.893 +01:00 [INF] Hosting environment: Development
+2024-11-28 17:01:33.894 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-28 17:01:39.046 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/1 - null null
+2024-11-28 17:01:39.103 +01:00 [INF] CORS policy execution successful.
+2024-11-28 17:01:39.106 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:01:39.142 +01:00 [INF] Handling GetPromptQuery
+2024-11-28 17:01:39.143 +01:00 [INF] Property PromptId : 1
+2024-11-28 17:01:39.250 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-28 17:01:39.281 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 137 ms
+2024-11-28 17:01:39.289 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:01:39.296 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/1 - 200 null application/json; charset=utf-8 253.5959ms
+2024-11-28 17:01:43.937 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/4 - null null
+2024-11-28 17:01:43.940 +01:00 [INF] CORS policy execution successful.
+2024-11-28 17:01:43.940 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:01:43.941 +01:00 [INF] Handling GetPromptQuery
+2024-11-28 17:01:43.941 +01:00 [INF] Property PromptId : 4
+2024-11-28 17:01:43.986 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-28 17:01:43.988 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 46 ms
+2024-11-28 17:01:43.989 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:01:43.990 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/4 - 404 null null 52.9254ms
+2024-11-28 17:01:57.632 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57679/Prompts - null null
+2024-11-28 17:01:57.635 +01:00 [INF] CORS policy execution successful.
+2024-11-28 17:01:57.637 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57679/Prompts - 204 null null 4.504ms
+2024-11-28 17:01:57.638 +01:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Prompts - application/json 29
+2024-11-28 17:01:57.640 +01:00 [INF] CORS policy execution successful.
+2024-11-28 17:01:57.640 +01:00 [INF] Executing endpoint 'HTTP: POST /Prompts'
+2024-11-28 17:01:57.648 +01:00 [INF] Handling CreatePromptCommand
+2024-11-28 17:01:57.649 +01:00 [INF] Property Text : prova testo prompt
+2024-11-28 17:01:57.713 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Prompts" ("Text")
+VALUES (@p0)
+RETURNING "Id";
+2024-11-28 17:01:57.732 +01:00 [INF] Handled CreatePromptCommand with Ardalis.Result.Result`1[System.Int32] in 82 ms
+2024-11-28 17:01:57.734 +01:00 [INF] Executed endpoint 'HTTP: POST /Prompts'
+2024-11-28 17:01:57.735 +01:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Prompts - 200 null application/json; charset=utf-8 96.7932ms
+2024-11-28 17:02:02.274 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/3 - null null
+2024-11-28 17:02:02.275 +01:00 [INF] CORS policy execution successful.
+2024-11-28 17:02:02.276 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:02:02.278 +01:00 [INF] Handling GetPromptQuery
+2024-11-28 17:02:02.278 +01:00 [INF] Property PromptId : 3
+2024-11-28 17:02:02.281 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-28 17:02:02.283 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 4 ms
+2024-11-28 17:02:02.284 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:02:02.285 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/3 - 200 null application/json; charset=utf-8 11.048ms
+2024-11-28 17:02:05.928 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/4 - null null
+2024-11-28 17:02:05.931 +01:00 [INF] CORS policy execution successful.
+2024-11-28 17:02:05.931 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:02:05.933 +01:00 [INF] Handling GetPromptQuery
+2024-11-28 17:02:05.934 +01:00 [INF] Property PromptId : 4
+2024-11-28 17:02:05.937 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-28 17:02:05.940 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 4 ms
+2024-11-28 17:02:05.941 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-28 17:02:05.941 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/4 - 200 null application/json; charset=utf-8 13.5036ms

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Prompt } from '@models/prompt.interface';
+import { Prompt } from '../../core/models/prompt.interface';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -18,6 +18,13 @@ export class PromptService {
   getById(id: number): Observable<Prompt> {
     return this.http.get<Prompt>(
       this.apiService.createUrl(`${this.endpoint}/${id}`)
+    );
+  }
+
+  create(text: string): Observable<Prompt> {
+    return this.http.post<Prompt>(
+      this.apiService.createUrl(this.endpoint),
+      { text }
     );
   }
 } 

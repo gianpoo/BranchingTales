@@ -253,3 +253,18 @@ button {
     width: calc(50% - 8px);
   }
 }
+
+textarea.form-input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.prompt-result {
+  margin-top: 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
