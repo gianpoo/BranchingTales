@@ -1,5 +1,4 @@
 export const API_ENDPOINTS = {
-  CONTRIBUTORS: 'Contributors',
   PROMPTS: 'Prompts'
 } as const;
 
