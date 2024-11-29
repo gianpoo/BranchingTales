@@ -1,3 +1,3 @@
-namespace StoryTeller.Web.Prompts;
+﻿namespace StoryTeller.Web.Prompts;
 
-public record PromptRecord(int Id, string Text); 
+public record PromptRecord(int Id, string Text);
