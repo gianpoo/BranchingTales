@@ -1,23 +1,23 @@
 <div class="card">
   <h3>Search Prompt</h3>
   <div class="search-container">
-    <input 
-      type="number" 
-      [(ngModel)]="promptId" 
-      placeholder="Enter Prompt ID" 
-      class="form-input search-input"
-    />
+    <input type="number"
+           [(ngModel)]="promptId"
+           placeholder="Enter Prompt ID"
+           class="form-input search-input"
+           name="ID" />
     <button (click)="searchPrompt()" class="search-button">Search</button>
   </div>
 
+
+  <h3>Insert Prompt</h3>
   <div class="add-form">
     <div class="form-group">
-      <textarea 
-        [(ngModel)]="newPromptText" 
-        placeholder="Enter new prompt text" 
-        class="form-input"
-        rows="3"
-      ></textarea>
+      <textarea [(ngModel)]="newPromptText"
+                placeholder="Enter new prompt text"
+                class="form-input"
+                rows="3"
+                name="Prompt Text"></textarea>
     </div>
     <button (click)="createPrompt()" class="add-button">Create Prompt</button>
   </div>
@@ -26,7 +26,7 @@
   <app-error-message [error]="error"></app-error-message>
 
   <div *ngIf="prompt" class="prompt-result">
-    <table class="contributors-table">
+    <table class="prompts-table">
       <thead>
         <tr>
           <th>ID</th>

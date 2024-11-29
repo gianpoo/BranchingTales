@@ -8,7 +8,7 @@ import { Prompt } from '../../../core/models/prompt.interface';
   templateUrl: './prompt-search.component.html'
 })
 export class PromptSearchComponent {
-  promptId: number | null = null;
+  promptId: number = 1;
   newPromptText = '';
   prompt: Prompt | null = null;
   isLoading = false;

@@ -117,28 +117,20 @@ button {
   margin-bottom: 32px;
 }
 
-.add-contributor-card {
-  margin-bottom: 32px;
-}
-
-.update-contributor-card {
-  margin-bottom: 32px;
-}
-
 .table-card {
   padding: 0;
   overflow-x: auto;
   margin-top: 32px;
 }
 
-.contributors-table {
+.prompts-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 600px;
 }
 
-.contributors-table th,
-.contributors-table td {
+.prompts-table th,
+.prompts-table td {
   padding: 16px;
   text-align: left;
   border-bottom: 1px solid #e2e8f0;
@@ -146,14 +138,6 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
-}
-
-.contributors-table th {
-  background-color: #f8fafc;
-  font-weight: 600;
-  color: #4a5568;
-  position: sticky;
-  top: 0;
 }
 
 /* Buttons */
