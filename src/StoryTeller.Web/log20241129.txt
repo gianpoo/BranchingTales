@@ -1,0 +1,115 @@
+2024-11-29 09:22:35.017 +01:00 [INF] Registered 8 endpoints in 1.252 milliseconds.
+2024-11-29 09:22:36.274 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-29 09:22:36.498 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-29 09:22:36.670 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-29 09:22:36.676 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-29 09:22:37.320 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-29 09:22:37.322 +01:00 [INF] Hosting environment: Development
+2024-11-29 09:22:37.322 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-29 09:23:18.949 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Contributors - null null
+2024-11-29 09:23:18.982 +01:00 [INF] CORS policy execution successful.
+2024-11-29 09:23:18.986 +01:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2024-11-29 09:23:19.005 +01:00 [INF] Handling ListContributorsQuery
+2024-11-29 09:23:19.007 +01:00 [INF] Property Skip : null
+2024-11-29 09:23:19.008 +01:00 [INF] Property Take : null
+2024-11-29 09:23:19.201 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2024-11-29 09:23:19.206 +01:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[StoryTeller.UseCases.Contributors.ContributorDTO]] in 197 ms
+2024-11-29 09:23:19.212 +01:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2024-11-29 09:23:19.219 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Contributors - 200 null application/json; charset=utf-8 274.7673ms
+2024-11-29 10:03:44.167 +01:00 [INF] Registered 8 endpoints in 533 milliseconds.
+2024-11-29 10:03:44.889 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-29 10:03:45.080 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2024-11-29 10:03:45.214 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-29 10:03:45.219 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-29 10:03:45.720 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-29 10:03:45.721 +01:00 [INF] Hosting environment: Development
+2024-11-29 10:03:45.721 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-29 10:03:52.977 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/3 - null null
+2024-11-29 10:03:53.009 +01:00 [INF] CORS policy execution successful.
+2024-11-29 10:03:53.012 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-29 10:03:53.052 +01:00 [INF] Handling GetPromptQuery
+2024-11-29 10:03:53.054 +01:00 [INF] Property PromptId : 3
+2024-11-29 10:03:53.157 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-29 10:03:53.188 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 133 ms
+2024-11-29 10:03:53.193 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-29 10:03:53.199 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/3 - 200 null application/json; charset=utf-8 224.865ms
+2024-11-29 10:04:00.865 +01:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57679/Prompts - null null
+2024-11-29 10:04:00.867 +01:00 [INF] CORS policy execution successful.
+2024-11-29 10:04:00.869 +01:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57679/Prompts - 204 null null 4.3814ms
+2024-11-29 10:04:00.871 +01:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Prompts - application/json 16
+2024-11-29 10:04:00.873 +01:00 [INF] CORS policy execution successful.
+2024-11-29 10:04:00.873 +01:00 [INF] Executing endpoint 'HTTP: POST /Prompts'
+2024-11-29 10:04:00.881 +01:00 [INF] Handling CreatePromptCommand
+2024-11-29 10:04:00.881 +01:00 [INF] Property Text : testo
+2024-11-29 10:04:00.981 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Prompts" ("Text")
+VALUES (@p0)
+RETURNING "Id";
+2024-11-29 10:04:01.001 +01:00 [INF] Handled CreatePromptCommand with Ardalis.Result.Result`1[System.Int32] in 118 ms
+2024-11-29 10:04:01.003 +01:00 [INF] Executed endpoint 'HTTP: POST /Prompts'
+2024-11-29 10:04:01.004 +01:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Prompts - 200 null application/json; charset=utf-8 132.7773ms
+2024-11-29 10:28:30.732 +01:00 [INF] Registered 2 endpoints in 375 milliseconds.
+2024-11-29 10:28:30.834 +01:00 [INF] No validators found in the system!
+2024-11-29 10:28:31.283 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-29 10:28:31.499 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Prompts" AS "p")
+2024-11-29 10:28:31.632 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-29 10:28:31.636 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-29 10:28:31.696 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-29 10:28:31.697 +01:00 [INF] Hosting environment: Development
+2024-11-29 10:28:31.698 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-29 10:36:30.972 +01:00 [INF] Registered 2 endpoints in 332 milliseconds.
+2024-11-29 10:36:31.069 +01:00 [INF] No validators found in the system!
+2024-11-29 10:36:31.625 +01:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2024-11-29 10:36:31.825 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Prompts" AS "p")
+2024-11-29 10:36:31.977 +01:00 [INF] Now listening on: https://localhost:57679
+2024-11-29 10:36:31.982 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-29 10:36:32.057 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-29 10:36:32.058 +01:00 [INF] Hosting environment: Development
+2024-11-29 10:36:32.059 +01:00 [INF] Content root path: C:\Users\campa\source\repos\BranchingTales\src\StoryTeller.Web
+2024-11-29 10:36:37.027 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/1 - null null
+2024-11-29 10:36:37.054 +01:00 [INF] CORS policy execution successful.
+2024-11-29 10:36:37.057 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-29 10:36:37.091 +01:00 [INF] Handling GetPromptQuery
+2024-11-29 10:36:37.093 +01:00 [INF] Property PromptId : 1
+2024-11-29 10:36:37.168 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-29 10:36:37.198 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 104 ms
+2024-11-29 10:36:37.205 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-29 10:36:37.212 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/1 - 200 null application/json; charset=utf-8 188.6095ms
+2024-11-29 10:36:44.636 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Prompts/5 - null null
+2024-11-29 10:36:44.640 +01:00 [INF] CORS policy execution successful.
+2024-11-29 10:36:44.640 +01:00 [INF] Executing endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-29 10:36:44.641 +01:00 [INF] Handling GetPromptQuery
+2024-11-29 10:36:44.642 +01:00 [INF] Property PromptId : 5
+2024-11-29 10:36:44.687 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__promptId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Text"
+FROM "Prompts" AS "p"
+WHERE "p"."Id" = @__promptId_0
+LIMIT 1
+2024-11-29 10:36:44.690 +01:00 [INF] Handled GetPromptQuery with Ardalis.Result.Result`1[StoryTeller.UseCases.Prompts.PromptDTO] in 47 ms
+2024-11-29 10:36:44.691 +01:00 [INF] Executed endpoint 'HTTP: GET /Prompts/{PromptId}'
+2024-11-29 10:36:44.693 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Prompts/5 - 200 null application/json; charset=utf-8 59.2552ms

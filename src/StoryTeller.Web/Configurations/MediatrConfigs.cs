@@ -1,6 +1,6 @@
 ﻿using Ardalis.SharedKernel;
-using StoryTeller.Core.ContributorAggregate;
-using StoryTeller.UseCases.Contributors.Create;
+using StoryTeller.Core.PromptAggregate;
+using StoryTeller.UseCases.Prompts.Create;
 using MediatR;
 using System.Reflection;
 
@@ -12,8 +12,8 @@ public static class MediatrConfigs
   {
     var mediatRAssemblies = new[]
       {
-        Assembly.GetAssembly(typeof(Contributor)), // Core
-        Assembly.GetAssembly(typeof(CreateContributorCommand)) // UseCases
+        Assembly.GetAssembly(typeof(Prompt)), // Core
+        Assembly.GetAssembly(typeof(CreatePromptCommand)) // UseCases
       };
 
     services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))

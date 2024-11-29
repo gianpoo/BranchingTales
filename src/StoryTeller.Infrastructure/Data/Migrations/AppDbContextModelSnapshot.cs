@@ -16,25 +16,6 @@ namespace StoryTeller.Infrastructure.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
-            modelBuilder.Entity("StoryTeller.Core.ContributorAggregate.Contributor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contributors", (string)null);
-                });
-
             modelBuilder.Entity("StoryTeller.Core.PromptAggregate.Prompt", b =>
                 {
                     b.Property<int>("Id")
@@ -51,34 +32,6 @@ namespace StoryTeller.Infrastructure.Data.Migrations
                     b.ToTable("Prompts", (string)null);
                 });
 
-            modelBuilder.Entity("StoryTeller.Core.ContributorAggregate.Contributor", b =>
-                {
-                    b.OwnsOne("StoryTeller.Core.ContributorAggregate.PhoneNumber", "PhoneNumber", b1 =>
-                        {
-                            b1.Property<int>("ContributorId")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<string>("CountryCode")
-                                .IsRequired()
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("Extension")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasColumnType("TEXT");
-
-                            b1.HasKey("ContributorId");
-
-                            b1.ToTable("Contributors", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("ContributorId");
-                        });
-
-                    b.Navigation("PhoneNumber");
-                });
 #pragma warning restore 612, 618
         }
     }

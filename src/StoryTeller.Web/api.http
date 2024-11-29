@@ -2,51 +2,6 @@
 @host=https://localhost
 @port=57679
 
-// List all contributors
-GET {{host}}:{{port}}/Contributors
-
-###
-
-# Get a specific contributor
-GET {{host}}:{{port}}/Contributors/{{id}}
-
-###
-
-# Add a new contributor
-POST {{host}}:{{port}}/Contributors
-Content-Type: application/json
-
-{
-  "name": "{{name}}",
-  "email": "{{email}}",
-  "phoneNumber": "{{phoneNumber}}"
-}
-
-###
-
-# Update a contributor
-PUT {{host}}:{{port}}/Contributors/{{id}}
-Content-Type: application/json
-
-{
-  "id": {{id}},
-  "name": "{{name}}",
-  "email": "{{email}}",
-  "phoneNumber": "{{phoneNumber}}"
-}
-
-###
-
-# Delete a contributor
-DELETE {{host}}:{{port}}/Contributors/{{id}}
-
-###
-
-# Search contributors by name
-GET {{host}}:{{port}}/Contributors/search/{{searchName}}
-
-###
-
 # Get a specific prompt
 GET {{host}}:{{port}}/Prompts/{{id}}
 

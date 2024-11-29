@@ -21,4 +21,8 @@
     <ProjectReference Include="..\StoryTeller.Core\StoryTeller.Core.csproj" />
     <ProjectReference Include="..\StoryTeller.UseCases\StoryTeller.UseCases.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Data\Queries\" />
+  </ItemGroup>
 </Project>
