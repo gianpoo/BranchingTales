@@ -1,4 +1,6 @@
-﻿using StoryTeller.Web.Configurations;
+﻿using StoryTeller.Infrastructure.Data.Queries;
+using StoryTeller.UseCases.Prompts.List;
+using StoryTeller.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,7 @@ builder.Services.AddFastEndpoints()
       o.ShortSchemaNames = true;
     });
 
+builder.Services.AddTransient<IListPromptsQueryService, ListPromptsQueryService>();
 var app = builder.Build();
 
 // Use custom middleware (if any)

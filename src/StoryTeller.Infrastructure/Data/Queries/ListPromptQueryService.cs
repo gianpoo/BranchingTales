@@ -3,7 +3,7 @@ using StoryTeller.UseCases.Prompts.List;
 
 namespace StoryTeller.Infrastructure.Data.Queries;
 
-public class ListtPromptsQueryService(AppDbContext _db) : IListPromptsQueryService
+public class ListPromptsQueryService(AppDbContext _db) : IListPromptsQueryService
 {
   // You can use EF, Dapper, SqlClient, etc. for queries -
   // this is just an example

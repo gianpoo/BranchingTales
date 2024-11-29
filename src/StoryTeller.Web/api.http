@@ -2,8 +2,18 @@
 @host=https://localhost
 @port=57679
 
+
+###
+
+# Get all prompts
+GET {{host}}:{{port}}/Prompts
+
+
+###
+
 # Get a specific prompt
 GET {{host}}:{{port}}/Prompts/{{id}}
+
 
 ###
 
