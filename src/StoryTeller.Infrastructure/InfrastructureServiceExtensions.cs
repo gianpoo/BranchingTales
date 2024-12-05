@@ -1,25 +1,16 @@
-﻿using StoryTeller.Core.Interfaces;
-using StoryTeller.Infrastructure.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using StoryTeller.Infrastructure.Services;
+using StoryTeller.Core.Interfaces;
 
 namespace StoryTeller.Infrastructure;
+
 public static class InfrastructureServiceExtensions
 {
-  public static IServiceCollection AddInfrastructureServices(
-    this IServiceCollection services,
-    ConfigurationManager config,
-    ILogger logger)
-  {
-    string? connectionString = config.GetConnectionString("SqliteConnection");
-    Guard.Against.Null(connectionString);
-    services.AddDbContext<AppDbContext>(options =>
-     options.UseSqlite(connectionString));
-
-    services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
-           .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
-
-
-    logger.LogInformation("{Project} services registered", "Infrastructure");
-
-    return services;
-  }
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddSingleton<IResponseService, ResponseService>();
+        services.AddSingleton<IChatRepository, ChatFileRepository>();
+        return services;
+    }
 }

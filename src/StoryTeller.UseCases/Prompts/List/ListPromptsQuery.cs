@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ardalis.Result;
+using StoryTeller.Core.DTOs;
+using MediatR;
 
 namespace StoryTeller.UseCases.Prompts.List;
-public record ListPromptsQuery(int? Skip, int? Take) : IQuery<Result<IEnumerable<PromptDTO>>>;
+
+public record ListPromptsQuery : IRequest<Result<IEnumerable<PromptDTO>>>;

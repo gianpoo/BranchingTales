@@ -1,44 +1,40 @@
-<div class="card">
-  <h3>Search Prompt</h3>
-  <div class="search-container">
-    <input type="number"
-           [(ngModel)]="promptId"
-           placeholder="Enter Prompt ID"
-           class="form-input search-input"
-           name="ID" />
-    <button (click)="searchPrompt()" class="search-button">Search</button>
+<div class="chat-layout" [class.chat-started]="hasStarted">
+  <!-- Initial Prompt Form -->
+  <div *ngIf="!hasStarted" class="initial-prompt">
+    <h3>How does your story begin?</h3>
+    <div class="chat-input-form">
+      <textarea [(ngModel)]="newPromptText"
+                placeholder="Start your story..."
+                class="chat-input"
+                rows="3"></textarea>
+      <button (click)="createPrompt()" class="send-button">Begin</button>
+    </div>
   </div>
 
-
-  <h3>Insert Prompt</h3>
-  <div class="add-form">
-    <div class="form-group">
-      <textarea [(ngModel)]="newPromptText"
-                placeholder="Enter new prompt text"
-                class="form-input"
-                rows="3"
-                name="Prompt Text"></textarea>
+  <!-- Chat Messages -->
+  <div class="messages-container" #chatMessages>
+    <div *ngFor="let message of messages" 
+         [ngClass]="{'message': true, 'user-message': message.isUser, 'bot-message': !message.isUser}">
+      {{ message.text }}
     </div>
-    <button (click)="createPrompt()" class="add-button">Create Prompt</button>
+  </div>
+
+  <!-- Chat Input -->
+  <div *ngIf="hasStarted" class="chat-input-container">
+    <div class="chat-input-form">
+      <input type="text" 
+             [(ngModel)]="newPromptText"
+             placeholder="Type your message..."
+             class="chat-input"
+             (keyup.enter)="createPrompt()">
+      <button (click)="createPrompt()" 
+              class="send-button"
+              [disabled]="isLoading">
+        Send
+      </button>
+    </div>
   </div>
 
   <app-loading-indicator [isLoading]="isLoading"></app-loading-indicator>
   <app-error-message [error]="error"></app-error-message>
-
-  <div *ngIf="prompt" class="prompt-result">
-    <table class="prompts-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Text</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ prompt.id }}</td>
-          <td>{{ prompt.text }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div> 

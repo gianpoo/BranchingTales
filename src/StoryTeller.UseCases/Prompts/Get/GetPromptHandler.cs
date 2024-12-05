@@ -1,23 +1,33 @@
-using StoryTeller.Core.PromptAggregate;
-using StoryTeller.Core.PromptAggregate.Specifications;
+using System.Linq;
+using StoryTeller.Core.ChatAggregate;
+using StoryTeller.Core.DTOs;
+using StoryTeller.Core.Interfaces;
 
 namespace StoryTeller.UseCases.Prompts.Get;
 
 public class GetPromptHandler : IQueryHandler<GetPromptQuery, Result<PromptDTO>>
 {
-    private readonly IReadRepository<Prompt> _repository;
+    private readonly IChatRepository _repository;
 
-    public GetPromptHandler(IReadRepository<Prompt> repository)
+    public GetPromptHandler(IChatRepository repository)
     {
         _repository = repository;
     }
 
     public async Task<Result<PromptDTO>> Handle(GetPromptQuery request, CancellationToken cancellationToken)
     {
-        var spec = new PromptByIdSpec(request.PromptId);
-        var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
-        if (entity == null) return Result.NotFound();
+        var chat = await _repository.GetByIdAsync(1);
+        if (chat == null)
+        {
+            return Result<PromptDTO>.NotFound();
+        }
 
-        return new PromptDTO(entity.Id, entity.Text);
+        var prompt = chat.Prompts.FirstOrDefault(p => p.Id == request.PromptId);
+        if (prompt == null)
+        {
+            return Result<PromptDTO>.NotFound();
+        }
+
+        return Result.Success(new PromptDTO(prompt.Id, prompt.Text));
     }
-} 
+}

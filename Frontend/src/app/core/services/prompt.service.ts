@@ -1,30 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Prompt } from '../../core/models/prompt.interface';
-import { ApiService } from './api.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromptService {
-  private endpoint = 'Prompts';
+  private apiUrl = environment.apiUrl;
 
-  constructor(
-    private http: HttpClient,
-    private apiService: ApiService
-  ) { }
+  constructor(private http: HttpClient) { }
 
-  getById(id: number): Observable<Prompt> {
-    return this.http.get<Prompt>(
-      this.apiService.createUrl(`${this.endpoint}/${id}`)
-    );
+  create(text: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/Chats`, { text });
   }
 
-  create(text: string): Observable<Prompt> {
-    return this.http.post<Prompt>(
-      this.apiService.createUrl(this.endpoint),
-      { text }
-    );
+  addPrompt(text: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/Chats/prompts`, { text });
+  }
+
+  getRandomResponse(): Observable<{ options: string[] }> {
+    return this.http.get<{ options: string[] }>(`${this.apiUrl}/Chats/responses/random`);
+  }
+
+  getAllPrompts(): Observable<{ prompts: Array<{ id: number, text: string }> }> {
+    return this.http.get<{ prompts: Array<{ id: number, text: string }> }>(`${this.apiUrl}/Chats/prompts`);
   }
 } 

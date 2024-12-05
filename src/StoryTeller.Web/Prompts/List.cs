@@ -1,32 +1,35 @@
-﻿using StoryTeller.UseCases.Prompts;
+﻿using StoryTeller.Core.DTOs;
+using StoryTeller.Core.Interfaces;
 using StoryTeller.UseCases.Prompts.List;
 
 namespace StoryTeller.Web.Prompts;
 
-/// <summary>
-/// List all Contributors
-/// </summary>
-/// <remarks>
-/// List all contributors - returns a ContributorListResponse containing the Contributors.
-/// </remarks>
-public class List(IMediator _mediator) : EndpointWithoutRequest<PromptListResponse>
+public class List : EndpointWithoutRequest<PromptListResponse>
 {
-  public override void Configure()
-  {
-    Get("/Prompts");
-    AllowAnonymous();
-  }
+    private readonly IMediator _mediator;
 
-  public override async Task HandleAsync(CancellationToken cancellationToken)
-  {
-    Result<IEnumerable<PromptDTO>> result = await _mediator.Send(new ListPromptsQuery(null, null), cancellationToken);
-
-    if (result.IsSuccess)
+    public List(IMediator mediator)
     {
-      Response = new PromptListResponse
-      {
-        Prompts = result.Value.Select(p => new PromptRecord(p.Id, p.Text)).ToList()
-      };
+        _mediator = mediator;
     }
-  }
+
+    public override void Configure()
+    {
+        Get("/Chats/prompts");
+        AllowAnonymous();
+    }
+
+    public override async Task HandleAsync(CancellationToken cancellationToken)
+    {
+        var query = new ListPromptsQuery();
+        var result = await _mediator.Send(query, cancellationToken);
+
+        if (result.IsSuccess)
+        {
+            Response = new PromptListResponse(result.Value);
+            return;
+        }
+
+        AddError(result.Errors.FirstOrDefault() ?? "Failed to list prompts");
+    }
 }

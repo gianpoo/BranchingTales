@@ -1,31 +1,30 @@
-using StoryTeller.Core.PromptAggregate;
+using System.Linq;
+using StoryTeller.Core.ChatAggregate;
+using StoryTeller.Core.DTOs;
+using StoryTeller.Core.Interfaces;
 
 namespace StoryTeller.UseCases.Prompts.Create;
 
-public class CreatePromptHandler : ICommandHandler<CreatePromptCommand, Result<int>>
+public class CreatePromptHandler : ICommandHandler<CreatePromptCommand, Result<string>>
 {
-    private readonly IRepository<Prompt> _repository;
+    private readonly IChatRepository _repository;
 
-    public CreatePromptHandler(IRepository<Prompt> repository)
+    public CreatePromptHandler(IChatRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<Result<int>> Handle(CreatePromptCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreatePromptCommand request, CancellationToken cancellationToken)
     {
-        // Validate input
-        if (string.IsNullOrEmpty(request.Text))
+        var chat = await _repository.GetByIdAsync(1);
+        if (chat == null)
         {
-            return Result<int>.Error("Text is required.");
+            return Result<string>.NotFound();
         }
 
-        // Create a new Prompt instance
-        var newPrompt = new Prompt(request.Text);
-
-        // Add the prompt to the repository
-        var createdItem = await _repository.AddAsync(newPrompt, cancellationToken);
-
-        // Return success with the created prompt's ID
-        return Result<int>.Success(createdItem.Id);
+        await _repository.AddPromptAsync(request.Text);
+        var promptId = chat.Prompts.Count + 1;
+        var path = $"https://localhost:57679/Chats/1/Prompts/{promptId}";
+        return Result<string>.Success(path);
     }
 } 

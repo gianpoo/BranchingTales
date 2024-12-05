@@ -1,7 +1,6 @@
 ﻿global using System.Runtime.CompilerServices;
 global using Ardalis.SharedKernel;
-global using StoryTeller.Core.ContributorAggregate;
-global using StoryTeller.UseCases.Contributors.Create;
+global using StoryTeller.Core.ChatAggregate;
 global using FluentAssertions;
 global using MediatR;
 global using Microsoft.Extensions.Logging;

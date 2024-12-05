@@ -1,36 +1,24 @@
 ﻿using StoryTeller.Core.Interfaces;
-using StoryTeller.Infrastructure;
-using StoryTeller.Infrastructure.Email;
 
 namespace StoryTeller.Web.Configurations;
 
 public static class ServiceConfigs
 {
-  public static IServiceCollection AddServiceConfigs(this IServiceCollection services, Microsoft.Extensions.Logging.ILogger logger, WebApplicationBuilder builder)
-  {
-    services.AddInfrastructureServices(builder.Configuration, logger)
-            .AddMediatrConfigs();
-
-
-    if (builder.Environment.IsDevelopment())
+    public static IServiceCollection AddWebServices(this IServiceCollection services)
     {
-      // Use a local test email server
-      // See: https://ardalis.com/configuring-a-local-test-email-server/
-      services.AddScoped<IEmailSender, MimeKitEmailSender>();
+        services.AddFastEndpoints();
+        services.SwaggerDocument();
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .WithExposedHeaders("*");
+            });
+        });
 
-      // Otherwise use this:
-      //builder.Services.AddScoped<IEmailSender, FakeEmailSender>();
-
+        return services;
     }
-    else
-    {
-      services.AddScoped<IEmailSender, MimeKitEmailSender>();
-    }
-
-    logger.LogInformation("{Project} services registered", "Mediatr and Email Sender");
-
-    return services;
-  }
-
-
 }

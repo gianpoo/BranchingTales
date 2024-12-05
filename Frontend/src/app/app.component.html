@@ -1,10 +1,56 @@
-<div class="container">
-  <h2>Branching Tales</h2>
-  <div class="content-wrapper">
-    <!-- Prompts Section -->
-    <div class="card">
-      <h3>Prompts</h3>
-      <app-prompt-search></app-prompt-search>
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>{{ title }}</h2>
+    <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+      <span class="theme-icon">{{ isDarkMode ? '☀️' : '🌙' }}</span>
+    </button>
+  </div>
+
+  <!-- Initial Prompt View -->
+  <div class="story-prompt" *ngIf="!isChatMode">
+    <h1>How does your story begin?</h1>
+    <div class="prompt-container">
+      <textarea 
+        class="form-input" 
+        placeholder="Start your story..." 
+        [(ngModel)]="storyPrompt"
+        [class.error]="error"
+        (keydown)="onKeyDown($event)"
+      ></textarea>
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+      <button 
+        class="begin-button" 
+        (click)="onBegin()" 
+        [disabled]="isLoading"
+      >
+        <span *ngIf="!isLoading">Begin</span>
+        <span *ngIf="isLoading">Starting...</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat View -->
+  <div class="chat-view" *ngIf="isChatMode">
+    <div class="messages-container">
+      <div *ngFor="let message of messages" 
+           class="message" 
+           [class.user-message]="message.isUser"
+           [class.bot-message]="!message.isUser">
+        {{ message.text }}
+      </div>
+    </div>
+    <div class="chat-input-container">
+      <textarea 
+        class="chat-input" 
+        placeholder="Type your response..." 
+        [(ngModel)]="storyPrompt"
+        (keydown)="onKeyDown($event)"
+      ></textarea>
+      <button class="send-button" 
+        [disabled]="!storyPrompt.trim()"
+        (click)="onSend()">
+        Send
+      </button>
     </div>
   </div>
 </div>

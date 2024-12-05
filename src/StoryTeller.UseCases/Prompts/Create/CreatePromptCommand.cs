@@ -1,7 +1,3 @@
 namespace StoryTeller.UseCases.Prompts.Create;
 
-/// <summary>
-/// Create a new Prompt.
-/// </summary>
-/// <param name="Text"></param>
-public record CreatePromptCommand(string Text) : Ardalis.SharedKernel.ICommand<Result<int>>; 
+public record CreatePromptCommand(string Text) : ICommand<Result<string>>;

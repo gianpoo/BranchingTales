@@ -1,6 +1,7 @@
 ﻿using Ardalis.SharedKernel;
-using StoryTeller.Core.PromptAggregate;
+using StoryTeller.Core.ChatAggregate;
 using StoryTeller.UseCases.Prompts.Create;
+using StoryTeller.UseCases.Chats.Create;
 using MediatR;
 using System.Reflection;
 
@@ -8,18 +9,12 @@ namespace StoryTeller.Web.Configurations;
 
 public static class MediatrConfigs
 {
-  public static IServiceCollection AddMediatrConfigs(this IServiceCollection services)
+  public static IServiceCollection AddMediatrServices(this IServiceCollection services)
   {
-    var mediatRAssemblies = new[]
-      {
-        Assembly.GetAssembly(typeof(Prompt)), // Core
-        Assembly.GetAssembly(typeof(CreatePromptCommand)) // UseCases
-      };
-
-    services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))
-            .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
-            .AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
-
+    services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+      Assembly.GetExecutingAssembly(),
+      typeof(CreateChatCommand).Assembly  // UseCases assembly
+    ));
     return services;
   }
 }

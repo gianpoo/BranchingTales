@@ -1,32 +1,41 @@
 using StoryTeller.UseCases.Prompts.Create;
+using StoryTeller.Core.Interfaces;
 
 namespace StoryTeller.Web.Prompts;
 
-public class Create(IMediator _mediator)
-    : Endpoint<CreatePromptRequest, CreatePromptResponse>
+public class Create : Endpoint<CreatePromptRequest, CreatePromptResponse>
 {
+    private readonly IMediator _mediator;
+
+    public Create(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
     public override void Configure()
     {
-        Post("/Prompts");
+        Post("/Chats/prompts");
         AllowAnonymous();
-        Summary(s =>
-        {
-            s.ExampleRequest = new CreatePromptRequest { Text = "Example prompt text" };
-        });
     }
 
     public override async Task HandleAsync(
         CreatePromptRequest request,
         CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new CreatePromptCommand(request.Text!), 
-            cancellationToken);
+        if (string.IsNullOrEmpty(request.Text))
+        {
+            ThrowError("Prompt text is required");
+        }
+
+        var command = new CreatePromptCommand(request.Text!);
+        var result = await _mediator.Send(command, cancellationToken);
 
         if (result.IsSuccess)
         {
-            Response = new CreatePromptResponse(result.Value, request.Text!);
+            Response = new CreatePromptResponse(1, request.Text!, result.Value);
             return;
         }
-        // TODO: Handle other cases as necessary
+
+        AddError(result.Errors.FirstOrDefault() ?? "Failed to create prompt");
     }
 } 

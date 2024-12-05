@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\StoryTeller.Core\StoryTeller.Core.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Result" />
     <PackageReference Include="MediatR" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\StoryTeller.Core\StoryTeller.Core.csproj" />
-  </ItemGroup>
-
 </Project>

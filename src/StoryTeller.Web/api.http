@@ -2,25 +2,23 @@
 @host=https://localhost
 @port=57679
 
-
-###
-
-# Get all prompts
-GET {{host}}:{{port}}/Prompts
-
-
-###
-
-# Get a specific prompt
-GET {{host}}:{{port}}/Prompts/{{id}}
-
-
-###
-
-# Add a new prompt
-POST {{host}}:{{port}}/Prompts
+### Create a new chat with initial prompt
+POST {{host}}:{{port}}/Chats
 Content-Type: application/json
 
 {
-    "text": "{{text}}"
+    "text":{{text}}
 }
+
+### Get a specific prompt in a chat
+GET {{host}}:{{port}}/Chats/{{chatId}}/Prompts/{{promptId}}
+
+### Add a prompt to existing chat
+POST {{host}}:{{port}}/Chats/{{chatId}}/Prompts
+Content-Type: application/json
+
+{
+    "text":{{text}}
+}
+
+###

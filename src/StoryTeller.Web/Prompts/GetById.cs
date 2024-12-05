@@ -1,13 +1,20 @@
 using StoryTeller.UseCases.Prompts.Get;
+using StoryTeller.Core.Interfaces;
 
 namespace StoryTeller.Web.Prompts;
 
-public class GetById(IMediator _mediator)
-    : Endpoint<GetPromptByIdRequest, PromptRecord>
+public class GetById : Endpoint<GetPromptByIdRequest, PromptRecord>
 {
+    private readonly IMediator _mediator;
+
+    public GetById(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
     public override void Configure()
     {
-        Get("/Prompts/{PromptId}");
+        Get("/Chats/prompts/{PromptId}");
         AllowAnonymous();
     }
 
@@ -16,18 +23,14 @@ public class GetById(IMediator _mediator)
         CancellationToken cancellationToken)
     {
         var query = new GetPromptQuery(request.PromptId);
-
         var result = await _mediator.Send(query, cancellationToken);
 
-        if (result.Status == ResultStatus.NotFound)
+        if (!result.IsSuccess)
         {
             await SendNotFoundAsync(cancellationToken);
             return;
         }
 
-        if (result.IsSuccess)
-        {
-            Response = new PromptRecord(result.Value.Id, result.Value.Text);
-        }
+        Response = new PromptRecord(result.Value.Id, result.Value.Text);
     }
 } 

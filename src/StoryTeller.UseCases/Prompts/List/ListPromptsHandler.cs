@@ -1,11 +1,30 @@
-﻿namespace StoryTeller.UseCases.Prompts.List;
-public class ListPromptsHandler(IListPromptsQueryService _query)
-  : IQueryHandler<ListPromptsQuery, Result<IEnumerable<PromptDTO>>>
-{
-  public async Task<Result<IEnumerable<PromptDTO>>> Handle(ListPromptsQuery request, CancellationToken cancellationToken)
-  {
-    var result = await _query.ListAsync();
+﻿using Ardalis.Result;
+using StoryTeller.Core.DTOs;
+using StoryTeller.Core.Interfaces;
+using MediatR;
 
-    return Result.Success(result);
-  }
+namespace StoryTeller.UseCases.Prompts.List;
+
+public class ListPromptsHandler : IRequestHandler<ListPromptsQuery, Result<IEnumerable<PromptDTO>>>
+{
+    private readonly IChatRepository _repository;
+
+    public ListPromptsHandler(IChatRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<Result<IEnumerable<PromptDTO>>> Handle(
+        ListPromptsQuery request,
+        CancellationToken cancellationToken)
+    {
+        var chat = await _repository.GetChat();
+        if (chat == null)
+        {
+            return Result.NotFound();
+        }
+
+        var prompts = chat.Prompts.Select(p => new PromptDTO(p.Id, p.Text));
+        return Result.Success(prompts);
+    }
 }
