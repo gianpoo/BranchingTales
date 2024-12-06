@@ -13,6 +13,9 @@ Content-Type: application/json
 ### Get a specific prompt in a chat
 GET {{host}}:{{port}}/Chats/{{chatId}}/Prompts/{{promptId}}
 
+### Get all the prompt in a specific chat
+GET {{host}}:{{port}}/Chats/{{chatId}}/Prompts
+
 ### Add a prompt to existing chat
 POST {{host}}:{{port}}/Chats/{{chatId}}/Prompts
 Content-Type: application/json
@@ -20,5 +23,3 @@ Content-Type: application/json
 {
     "text":{{text}}
 }
-
-###

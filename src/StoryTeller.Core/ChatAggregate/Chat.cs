@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace StoryTeller.Core.ChatAggregate;
 
@@ -7,12 +7,13 @@ namespace StoryTeller.Core.ChatAggregate;
 /// </summary>
 public class Chat
 {
+    [JsonProperty]
     private readonly List<Prompt> _prompts = new();
     
     /// <summary>
     /// Gets the collection of prompts in this chat.
     /// </summary>
-    [JsonPropertyName("prompts")]
+    [JsonProperty("prompts")]
     public IReadOnlyCollection<Prompt> Prompts => _prompts.AsReadOnly();
 
     /// <summary>
@@ -25,9 +26,10 @@ public class Chat
         AddPrompt(initialPrompt);
     }
 
-    // Required for serialization
+    [JsonConstructor]
     public Chat()
     {
+        _prompts = new List<Prompt>();
     }
 
     /// <summary>

@@ -16,14 +16,16 @@ export class PromptService {
   }
 
   addPrompt(text: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Chats/prompts`, { text });
+    return this.http.post(`${this.apiUrl}/Chats/1/Prompts`, { text });
   }
 
   getRandomResponse(): Observable<{ options: string[] }> {
     return this.http.get<{ options: string[] }>(`${this.apiUrl}/Chats/responses/random`);
   }
 
-  getAllPrompts(): Observable<{ prompts: Array<{ id: number, text: string }> }> {
-    return this.http.get<{ prompts: Array<{ id: number, text: string }> }>(`${this.apiUrl}/Chats/prompts`);
+  getChatPrompts(chatId: number): Observable<{ prompts: Array<{ id: number, text: string }> }> {
+    return this.http.get<{ prompts: Array<{ id: number, text: string }> }>(
+      `${this.apiUrl}/Chats/${chatId}/Prompts`
+    );
   }
 } 

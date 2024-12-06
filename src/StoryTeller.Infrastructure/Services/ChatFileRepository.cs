@@ -1,7 +1,7 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using StoryTeller.Core.ChatAggregate;
 using StoryTeller.Core.Interfaces;
+using Ardalis.GuardClauses;
 
 namespace StoryTeller.Infrastructure.Services;
 
@@ -13,17 +13,16 @@ public class ChatFileRepository : IChatRepository
 {
     private readonly string _filePath;
     private static readonly object _lock = new();
-    private static readonly JsonSerializerOptions _jsonOptions = new()
+    private static readonly JsonSerializerSettings _jsonSettings = new()
     {
-        PropertyNameCaseInsensitive = true,
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        WriteIndented = true
+        Formatting = Formatting.Indented,
+        NullValueHandling = NullValueHandling.Ignore
     };
 
     public ChatFileRepository()
     {
         var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-        _filePath = Path.Combine(baseDir, "Data", "chatlog.json");
+        _filePath = Path.Combine(baseDir, "Data", "chats.json");
         EnsureFileExists();
     }
 
@@ -42,45 +41,102 @@ public class ChatFileRepository : IChatRepository
 
     public async Task<Chat> CreateAsync(string initialPrompt)
     {
-        await File.WriteAllTextAsync(_filePath, "[]");
-        
+        Guard.Against.NullOrEmpty(initialPrompt);
         var chat = new Chat(initialPrompt);
-        await SaveChat(chat);
+        
+        await Task.Run(() =>
+        {
+            lock (_lock)
+            {
+                // Clear existing chats and create new one
+                var chats = new List<Chat> { chat };
+                var json = JsonConvert.SerializeObject(chats, _jsonSettings);
+                File.WriteAllText(_filePath, json);
+            }
+        });
+
         return chat;
     }
 
-    public async Task<Chat?> GetByIdAsync(int id) => await GetChat();
-
-    public async Task<List<Chat>> GetAllAsync()
+    public async Task<Chat?> GetByIdAsync(int id)
     {
-        var chat = await GetChat();
-        return chat != null ? new List<Chat> { chat } : new List<Chat>();
+        return await Task.Run(() =>
+        {
+            lock (_lock)
+            {
+                var json = File.ReadAllText(_filePath);
+                var chats = JsonConvert.DeserializeObject<List<Chat>>(json, _jsonSettings);
+                return chats?.FirstOrDefault();
+            }
+        });
     }
 
     public async Task AddPromptAsync(string promptText)
     {
-        var chat = await GetChat();
-        if (chat == null)
+        Guard.Against.NullOrEmpty(promptText);
+        await Task.Run(() =>
         {
-            chat = new Chat(promptText);
-        }
-        else
-        {
-            chat.AddPrompt(promptText);
-        }
-        await SaveChat(chat);
+            lock (_lock)
+            {
+                // Read existing chats
+                var json = File.ReadAllText(_filePath);
+                var chats = JsonConvert.DeserializeObject<List<Chat>>(json, _jsonSettings) ?? new List<Chat>();
+                
+                var chat = chats.FirstOrDefault();
+                if (chat == null)
+                {
+                    // If no chat exists, create one
+                    chat = new Chat(promptText);
+                    chats = new List<Chat> { chat };
+                }
+                else
+                {
+                    // Add prompt to existing chat
+                    chat.AddPrompt(promptText);
+                }
+
+                // Save the updated chat back to file
+                var updatedJson = JsonConvert.SerializeObject(chats, _jsonSettings);
+                File.WriteAllText(_filePath, updatedJson);
+            }
+        });
     }
 
     public async Task<Chat?> GetChat()
     {
-        var json = await File.ReadAllTextAsync(_filePath);
-        var chats = JsonSerializer.Deserialize<List<Chat>>(json, _jsonOptions);
-        return chats?.FirstOrDefault();
+        return await Task.Run(() =>
+        {
+            lock (_lock)
+            {
+                var json = File.ReadAllText(_filePath);
+                var chats = JsonConvert.DeserializeObject<List<Chat>>(json, _jsonSettings);
+                return chats?.FirstOrDefault();
+            }
+        });
     }
 
     public async Task SaveChat(Chat chat)
     {
-        var json = JsonSerializer.Serialize(new List<Chat> { chat }, _jsonOptions);
-        await File.WriteAllTextAsync(_filePath, json);
+        await Task.Run(() =>
+        {
+            lock (_lock)
+            {
+                var json = JsonConvert.SerializeObject(new List<Chat> { chat }, _jsonSettings);
+                File.WriteAllText(_filePath, json);
+            }
+        });
+    }
+
+    public async Task<List<Chat>> GetAllAsync()
+    {
+        return await Task.Run(() =>
+        {
+            lock (_lock)
+            {
+                var json = File.ReadAllText(_filePath);
+                var chats = JsonConvert.DeserializeObject<List<Chat>>(json, _jsonSettings) ?? new List<Chat>();
+                return chats;
+            }
+        });
     }
 } 

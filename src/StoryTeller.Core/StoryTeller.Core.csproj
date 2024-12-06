@@ -4,5 +4,6 @@
     <PackageReference Include="Ardalis.Result" />
     <PackageReference Include="Ardalis.SharedKernel" />
     <PackageReference Include="Ardalis.SmartEnum" />
+    <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 </Project>

@@ -31,16 +31,18 @@
 
   <!-- Chat View -->
   <div class="chat-view" *ngIf="isChatMode">
-    <div class="messages-container">
+    <div class="messages-container" #messagesContainer>
       <div *ngFor="let message of messages" 
            class="message" 
            [class.user-message]="message.isUser"
            [class.bot-message]="!message.isUser">
-        {{ message.text }}
+        <span *ngIf="!message.html">{{ message.text }}</span>
+        <span *ngIf="message.html" [innerHTML]="message.text"></span>
       </div>
     </div>
     <div class="chat-input-container">
       <textarea 
+        #chatInput
         class="chat-input" 
         placeholder="Type your response..." 
         [(ngModel)]="storyPrompt"

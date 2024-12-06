@@ -21,6 +21,7 @@ export class PromptSearchComponent implements AfterViewChecked {
   isLoading = false;
   error: string | null = null;
   messages: ChatMessage[] = [];
+  private currentChatId: number = 1;
 
   constructor(private promptService: PromptService) {}
 
@@ -47,17 +48,17 @@ export class PromptSearchComponent implements AfterViewChecked {
 
   private async getAllPrompts(): Promise<string> {
     try {
-      const response = await firstValueFrom(this.promptService.getAllPrompts());
+      const response = await firstValueFrom(this.promptService.getChatPrompts(this.currentChatId));
       if (!response.prompts?.length) {
-        return 'No messages found in history.';
+        return 'No messages found in this chat.';
       }
-      return 'Here are your previous messages:\n\n' + 
+      return 'Here are the messages in this chat:\n\n' + 
              response.prompts
                .map((p, i) => `${i + 1}. ${p.text}`)
                .join('\n');
     } catch (error) {
-      console.error('Error getting all prompts:', error);
-      return 'Failed to retrieve message history.';
+      console.error('Error getting chat prompts:', error);
+      return 'Failed to retrieve chat messages.';
     }
   }
 
@@ -91,10 +92,12 @@ export class PromptSearchComponent implements AfterViewChecked {
     this.error = null;
 
     if (!this.hasStarted) {
-      // Create new chat
+      // Create new chat - this will clear any existing chat
       this.promptService.create(userMessage).subscribe({
         next: async (result) => {
-          console.log('Chat created:', result);
+          console.log('New chat created:', result);
+          this.messages = []; // Clear existing messages
+          this.currentChatId = 1;
           await this.addUserMessage(userMessage, 1);
           this.newPromptText = '';
           this.isLoading = false;

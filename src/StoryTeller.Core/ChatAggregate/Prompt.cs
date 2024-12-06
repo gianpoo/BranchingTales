@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace StoryTeller.Core.ChatAggregate;
 
@@ -10,13 +10,13 @@ public class Prompt
     /// <summary>
     /// Gets or sets the ID of the prompt.
     /// </summary>
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public int Id { get; set; }
 
     /// <summary>
     /// Gets or sets the text content of the prompt.
     /// </summary>
-    [JsonPropertyName("text")]
+    [JsonProperty("text")]
     public string Text { get; set; } = string.Empty;
 
     /// <summary>
@@ -31,6 +31,7 @@ public class Prompt
     }
 
     // Required for serialization
+    [JsonConstructor]
     public Prompt()
     {
     }
