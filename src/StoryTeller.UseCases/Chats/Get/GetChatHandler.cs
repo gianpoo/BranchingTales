@@ -24,6 +24,6 @@ public class GetChatHandler : IQueryHandler<GetChatQuery, Result<ChatDTO>>
         }
 
         var prompts = chat.Prompts.Select(p => new PromptDTO(p.Id, p.Text));
-        return Result.Success(new ChatDTO(prompts.ToList()));
+        return Result.Success(new ChatDTO(prompts.ToList(), chat.Limit));
     }
 } 

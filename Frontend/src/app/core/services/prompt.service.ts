@@ -11,8 +11,8 @@ export class PromptService {
 
   constructor(private http: HttpClient) { }
 
-  create(text: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Chats`, { text });
+  create(text: string, limit: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/Chats`, { text, limit });
   }
 
   addPrompt(text: string): Observable<any> {

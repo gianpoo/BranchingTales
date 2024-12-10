@@ -22,6 +22,7 @@ export class PromptSearchComponent implements AfterViewChecked {
   error: string | null = null;
   messages: ChatMessage[] = [];
   private currentChatId: number = 1;
+  iterationLimit: number = 3;
 
   constructor(private promptService: PromptService) {}
 
@@ -36,13 +37,13 @@ export class PromptSearchComponent implements AfterViewChecked {
     } catch(err) {}
   }
 
-  private async getRandomResponse(): Promise<string> {
+  private async getRandomResponse(): Promise<string[]> {
     try {
       const response = await firstValueFrom(this.promptService.getRandomResponse());
-      return response.options[0]; // Use the first option
+      return response.options;
     } catch (error) {
       console.error('Error getting random response:', error);
-      return 'I am thinking about what happens next...';
+      return ['I am thinking about what happens next...'];
     }
   }
 
@@ -70,20 +71,34 @@ export class PromptSearchComponent implements AfterViewChecked {
     });
 
     // Get response based on command
-    const aiResponse = text.trim().toLowerCase() === "getallprompts" 
-      ? await this.getAllPrompts()
-      : await this.getRandomResponse();
-
-    this.messages.push({
-      id: -this.messages.length,
-      text: aiResponse,
-      isUser: false
-    });
+    if (text.trim().toLowerCase() === "getallprompts") {
+      const allPromptsResponse = await this.getAllPrompts();
+      this.messages.push({
+        id: -this.messages.length,
+        text: allPromptsResponse,
+        isUser: false
+      });
+    } else {
+      // Get array of responses and add each as separate message
+      const aiResponses = await this.getRandomResponse();
+      aiResponses.forEach(response => {
+        this.messages.push({
+          id: -this.messages.length,
+          text: response,
+          isUser: false
+        });
+      });
+    }
   }
 
   createPrompt(): void {
     if (!this.newPromptText.trim()) {
       this.error = 'Please enter your message';
+      return;
+    }
+
+    if (!this.hasStarted && (this.iterationLimit < 2 || this.iterationLimit > 5)) {
+      this.error = 'Please select a valid story length (2-5)';
       return;
     }
 
@@ -93,7 +108,7 @@ export class PromptSearchComponent implements AfterViewChecked {
 
     if (!this.hasStarted) {
       // Create new chat - this will clear any existing chat
-      this.promptService.create(userMessage).subscribe({
+      this.promptService.create(userMessage, this.iterationLimit).subscribe({
         next: async (result) => {
           console.log('New chat created:', result);
           this.messages = []; // Clear existing messages

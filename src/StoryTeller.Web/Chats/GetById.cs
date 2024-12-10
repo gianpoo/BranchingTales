@@ -35,7 +35,8 @@ public class GetById : Endpoint<GetChatByIdRequest, ChatResponse>
         if (result.IsSuccess)
         {
             Response = new ChatResponse(
-                result.Value.Prompts.Select(p => new PromptRecord(p.Id, p.Text)).ToList());
+                result.Value.Prompts.Select(p => new PromptRecord(p.Id, p.Text)).ToList(),
+                result.Value.Limit);
         }
     }
 } 

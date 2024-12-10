@@ -7,7 +7,21 @@
                 placeholder="Start your story..."
                 class="chat-input"
                 rows="3"></textarea>
-      <button (click)="createPrompt()" class="send-button">Begin</button>
+      <div class="story-controls">
+        <div class="limit-selector">
+          <label for="iterationLimit">Story Length:</label>
+          <select 
+            id="iterationLimit" 
+            [(ngModel)]="iterationLimit" 
+            class="limit-select">
+            <option [ngValue]="2">Short (2)</option>
+            <option [ngValue]="3">Medium (3)</option>
+            <option [ngValue]="4">Long (4)</option>
+            <option [ngValue]="5">Epic (5)</option>
+          </select>
+        </div>
+        <button (click)="createPrompt()" class="send-button">Begin</button>
+      </div>
     </div>
   </div>
 

@@ -28,7 +28,8 @@ public class List : EndpointWithoutRequest<List<ChatResponse>>
         if (result.IsSuccess)
         {
             Response = result.Value.Select(c => new ChatResponse(
-                c.Prompts.Select(p => new PromptRecord(p.Id, p.Text)).ToList())).ToList();
+                c.Prompts.Select(p => new PromptRecord(p.Id, p.Text)).ToList(),
+                c.Limit)).ToList();
         }
     }
 } 

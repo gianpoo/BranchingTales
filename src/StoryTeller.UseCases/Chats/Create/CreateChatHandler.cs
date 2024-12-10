@@ -16,7 +16,7 @@ public class CreateChatHandler : ICommandHandler<CreateChatCommand, Result>
 
     public async Task<Result> Handle(CreateChatCommand request, CancellationToken cancellationToken)
     {
-        await _repository.CreateAsync(request.Text);
+        await _repository.CreateAsync(request.Text, request.Limit);
         return Result.Success();
     }
 }

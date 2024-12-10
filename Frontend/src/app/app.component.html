@@ -18,26 +18,57 @@
         (keydown)="onKeyDown($event)"
       ></textarea>
       <div *ngIf="error" class="error-message">{{ error }}</div>
-      <button 
-        class="begin-button" 
-        (click)="onBegin()" 
-        [disabled]="isLoading"
-      >
-        <span *ngIf="!isLoading">Begin</span>
-        <span *ngIf="isLoading">Starting...</span>
-      </button>
+      <div class="story-controls">
+        <div class="limit-selector">
+          <label for="iterationLimit">Story Length:</label>
+          <select 
+            id="iterationLimit" 
+            [(ngModel)]="iterationLimit" 
+            class="limit-select">
+            <option [ngValue]="2">Short (2)</option>
+            <option [ngValue]="3">Medium (3)</option>
+            <option [ngValue]="4">Long (4)</option>
+            <option [ngValue]="5">Epic (5)</option>
+          </select>
+        </div>
+        <button 
+          class="begin-button" 
+          (click)="onBegin()" 
+          [disabled]="isLoading"
+        >
+          <span *ngIf="!isLoading">Begin</span>
+          <span *ngIf="isLoading">Starting...</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- Chat View -->
   <div class="chat-view" *ngIf="isChatMode">
     <div class="messages-container" #messagesContainer>
-      <div *ngFor="let message of messages" 
-           class="message" 
-           [class.user-message]="message.isUser"
-           [class.bot-message]="!message.isUser">
-        <span *ngIf="!message.html">{{ message.text }}</span>
-        <span *ngIf="message.html" [innerHTML]="message.text"></span>
+      <div *ngFor="let message of messages; let i = index">
+        <!-- Regular messages -->
+        <div *ngIf="!message.isOption" 
+             class="message" 
+             [class.user-message]="message.isUser"
+             [class.bot-message]="!message.isUser">
+          {{ message.text }}
+        </div>
+        
+        <!-- Options container -->
+        <div *ngIf="isFirstOption(message, i)" 
+             class="options-container">
+          <ng-container *ngFor="let option of getOptionsSlice(i)">
+            <div *ngIf="option.isOption"
+                 class="message option-message"
+                 [class.selected-option]="option.isSelected"
+                 [class.disabled-option]="option.disabled"
+                 (click)="handleOptionClick(option)"
+                 [style.cursor]="getCursorStyle(option)">
+              {{ option.text }}
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
     <div class="chat-input-container">

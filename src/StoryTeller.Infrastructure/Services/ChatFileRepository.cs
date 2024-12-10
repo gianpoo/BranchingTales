@@ -39,10 +39,12 @@ public class ChatFileRepository : IChatRepository
         }
     }
 
-    public async Task<Chat> CreateAsync(string initialPrompt)
+    public async Task<Chat> CreateAsync(string initialPrompt, int limit)
     {
         Guard.Against.NullOrEmpty(initialPrompt);
-        var chat = new Chat(initialPrompt);
+        Guard.Against.NegativeOrZero(limit);
+        
+        var chat = new Chat(initialPrompt, limit);
         
         await Task.Run(() =>
         {
@@ -85,9 +87,7 @@ public class ChatFileRepository : IChatRepository
                 var chat = chats.FirstOrDefault();
                 if (chat == null)
                 {
-                    // If no chat exists, create one
-                    chat = new Chat(promptText);
-                    chats = new List<Chat> { chat };
+                    throw new InvalidOperationException("Cannot add prompt - no active chat exists. Create a chat first.");
                 }
                 else
                 {

@@ -37,7 +37,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "outputHashing": "all",
+            "sourceMap": true
           },
           "configurations": {
             "production": {

@@ -20,7 +20,8 @@ public class ListChatsHandler : IQueryHandler<ListChatsQuery, Result<List<ChatDT
     {
         var chats = await _repository.GetAllAsync();
         var chatDtos = chats.Select(c => new ChatDTO(
-            c.Prompts.Select(p => new PromptDTO(p.Id, p.Text)).ToList())).ToList();
+            c.Prompts.Select(p => new PromptDTO(p.Id, p.Text)).ToList(),
+            c.Limit)).ToList();
         return Result<List<ChatDTO>>.Success(chatDtos);
     }
 } 

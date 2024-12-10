@@ -17,19 +17,30 @@ public class Chat
     public IReadOnlyCollection<Prompt> Prompts => _prompts.AsReadOnly();
 
     /// <summary>
-    /// Creates a new chat with an initial prompt.
+    /// Gets the maximum number of iterations allowed with the AI service.
+    /// </summary>
+    [JsonProperty("limit")]
+    public int Limit { get; private set; }
+
+    /// <summary>
+    /// Creates a new chat with an initial prompt and interaction limit.
     /// </summary>
     /// <param name="initialPrompt">The text of the first prompt.</param>
-    public Chat(string initialPrompt)
+    /// <param name="limit">The maximum number of AI service interactions allowed.</param>
+    public Chat(string initialPrompt, int limit)
     {
         Guard.Against.NullOrEmpty(initialPrompt);
+        Guard.Against.NegativeOrZero(limit, nameof(limit));
+        
+        Limit = limit;
         AddPrompt(initialPrompt);
     }
 
     [JsonConstructor]
-    public Chat()
+    private Chat()
     {
         _prompts = new List<Prompt>();
+        // No default limit - should only be created through the parameterized constructor
     }
 
     /// <summary>

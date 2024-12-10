@@ -28,13 +28,19 @@ public class Create : Endpoint<CreateChatRequest, ChatResponse>
             ThrowError("Message text is required");
         }
 
-        var command = new CreateChatCommand(request.Text);
+        if (request.Limit <= 0)
+        {
+            ThrowError("Limit must be greater than zero");
+        }
+
+        var command = new CreateChatCommand(request.Text!, request.Limit);
         var result = await _mediator.Send(command, cancellationToken);
 
         if (result.IsSuccess)
         {
             Response = new ChatResponse(
-                new List<PromptRecord> { new(1, request.Text!) }
+                new List<PromptRecord> { new(1, request.Text!) },
+                request.Limit
             );
             return;
         }
