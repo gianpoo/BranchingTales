@@ -45,9 +45,8 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   background-color: var(--background-color);
-  max-width: 1200px;
-  margin: 0 auto;
   width: 100%;
+  margin: 0;
   overflow: hidden;
 }
 
@@ -273,6 +272,8 @@ body {
   scroll-behavior: smooth;
   overscroll-behavior: contain;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Customize scrollbar for smoother appearance */
@@ -305,16 +306,17 @@ body {
 
 /* Message spacing and alignment */
 .messages-container .message {
-  max-width: min(80%, 600px);
+  max-width: min(70%, 800px);
   margin-bottom: 0.5rem;
 }
 
 /* Options container specific styles */
 .messages-container .options-container {
   width: 100%;
-  max-width: min(80%, 600px);
+  max-width: min(70%, 800px);
   margin: 1.5rem 0;
   align-self: flex-start;
+  position: relative;
 }
 
 /* Header message before options */
@@ -333,21 +335,26 @@ body {
   scrollbar-color: var(--border-color) transparent;
 }
 
+/* Message base styles */
 .message {
-  max-width: min(80%, 600px);
+  max-width: min(70%, 800px);
   padding: 0.75rem 1rem;
   border-radius: 1rem;
   line-height: 1.5;
   font-size: clamp(0.875rem, 2vw, 1rem);
   margin: 0.5rem 0;
+  width: fit-content;
+  word-break: break-word;
 }
 
 .user-message {
   background-color: var(--accent-color);
   color: white;
   align-self: flex-end;
-  margin-left: auto;
   border-bottom-right-radius: 0.25rem;
+  margin-left: auto;
+  margin-right: 0;
+  max-width: min(70%, 800px);
 }
 
 .bot-message {

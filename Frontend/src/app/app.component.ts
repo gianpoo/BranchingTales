@@ -80,10 +80,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
             this.messages.push({ text: 'No prompts found.', isUser: false });
           } else {
             const allPromptsMessage = response.prompts
-              .map((p: { id: number, text: string }, index: number) => 
-                `${index + 1}. ${p.text}`
-              )
-              .join('\n\n');
+              .map((p: { id: number, text: string }) => p.text)
+              .join(' ');
             this.messages.push({ 
               text: allPromptsMessage, 
               isUser: false
@@ -115,32 +113,51 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   private getRandomResponse() {
-    this.promptService.getRandomResponse().subscribe({
-      next: (response) => {
-        if (response.options && response.options.length > 0) {
-          // Clear any previous options first
-          this.messages = this.messages.filter(m => !m.isOption);
-          
-          // Add the question
+    // First get all prompts
+    this.promptService.getChatPrompts(1).subscribe({
+      next: (response: { prompts: Array<{ id: number, text: string }> }) => {
+        if (response.prompts?.length) {
+          const allPromptsMessage = response.prompts
+            .map((p: { id: number, text: string }) => p.text)
+            .join(' ');
           this.messages.push({ 
-            text: "How would you like the story to continue?", 
-            isUser: false 
-          });
-          
-          // Add new options
-          response.options.forEach(option => {
-            this.messages.push({ 
-              text: option, 
-              isUser: false,
-              isOption: true,
-              isSelected: false,
-              disabled: false
-            });
+            text: allPromptsMessage, 
+            isUser: false
           });
         }
+
+        // Then get and show the options
+        this.promptService.getRandomResponse().subscribe({
+          next: (response) => {
+            if (response.options && response.options.length > 0) {
+              // Clear any previous options first
+              this.messages = this.messages.filter(m => !m.isOption);
+              
+              // Add the question
+              this.messages.push({ 
+                text: "How would you like the story to continue?", 
+                isUser: false 
+              });
+              
+              // Add new options
+              response.options.forEach(option => {
+                this.messages.push({ 
+                  text: option, 
+                  isUser: false,
+                  isOption: true,
+                  isSelected: false,
+                  disabled: false
+                });
+              });
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error('Error getting response:', err);
+          }
+        });
       },
-      error: (err: HttpErrorResponse) => {
-        console.error('Error getting response:', err);
+      error: (err: Error) => {
+        console.error('Error getting all prompts:', err);
       }
     });
   }
