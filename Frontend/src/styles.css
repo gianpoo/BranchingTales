@@ -314,7 +314,7 @@ body {
 .messages-container .options-container {
   width: 100%;
   max-width: min(70%, 800px);
-  margin: 1.5rem 0;
+  margin: 0.5rem 0 0 0;
   align-self: flex-start;
   position: relative;
 }
@@ -327,12 +327,6 @@ body {
   color: var(--text-color);
   font-weight: 500;
   padding-left: 0;
-}
-
-/* For Firefox */
-.messages-container {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color) transparent;
 }
 
 /* Message base styles */
@@ -596,7 +590,7 @@ body {
 .option-message {
   border: none;
   background-color: transparent;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   transition: all 0.3s ease;
   padding: 0.75rem;
   border-radius: 8px;
