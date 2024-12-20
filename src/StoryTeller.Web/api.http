@@ -7,19 +7,28 @@ POST {{host}}:{{port}}/Chats
 Content-Type: application/json
 
 {
-    "text":{{text}}
+    "text": {{text}},
+    "limit": {{limit}}
 }
+###
+
+### Get current story options
+GET {{host}}:{{port}}/Chats/options
+###
 
 ### Get a specific prompt in a chat
 GET {{host}}:{{port}}/Chats/{{chatId}}/Prompts/{{promptId}}
+###
 
-### Get all the prompt in a specific chat
+### Get all prompts in a specific chat
 GET {{host}}:{{port}}/Chats/{{chatId}}/Prompts
+###
 
 ### Add a prompt to existing chat
 POST {{host}}:{{port}}/Chats/{{chatId}}/Prompts
 Content-Type: application/json
 
 {
-    "text":{{text}}
+    "text": {{text}}
 }
+###

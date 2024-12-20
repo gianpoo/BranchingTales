@@ -22,21 +22,30 @@ public class AddPrompt : Endpoint<AddPromptRequest, PromptRecord>
         AddPromptRequest request,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrEmpty(request.Text))
+        try
         {
-            ThrowError("Prompt text is required");
+            if (string.IsNullOrEmpty(request.Text))
+            {
+                ThrowError("Text is required");
+            }
+
+            var command = new CreatePromptCommand(request.Text);
+            var result = await _mediator.Send(command, cancellationToken);
+
+            if (!result.IsSuccess)
+            {
+                Logger.LogError("Failed to add prompt: {Error}", result.Errors.FirstOrDefault());
+                ThrowError(result.Errors.FirstOrDefault() ?? "Failed to add prompt");
+                return;
+            }
+
+            Response = new PromptRecord(request.ChatId, request.Text);
         }
-
-        var command = new CreatePromptCommand(request.Text);
-        var result = await _mediator.Send(command, cancellationToken);
-
-        if (result.IsSuccess)
+        catch (Exception ex)
         {
-            Response = new PromptRecord(1, request.Text);
-            return;
+            Logger.LogError(ex, "Error adding prompt");
+            ThrowError("An error occurred while processing your request");
         }
-
-        await SendNotFoundAsync(cancellationToken);
     }
 }
 

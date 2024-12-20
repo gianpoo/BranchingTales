@@ -1,9 +1,7 @@
-namespace StoryTeller.Core.Interfaces;
-using StoryTeller.Core.DTOs;
+﻿namespace StoryTeller.Core.Interfaces;
 
 public interface IResponseService
 {
-    string GetRandomResponse();
-    Task SaveChatAsync(string prompt);
-    Task<List<ChatLogDTO>> GetChatsAsync();
+    Task<List<string>> GetOptionsAsync();
+    Task SaveOptionsAsync(List<string> options);
 } 

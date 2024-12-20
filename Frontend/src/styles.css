@@ -606,3 +606,19 @@ body {
 .messages-container .bot-message.options-header {
   margin-bottom: 0.5rem;
 }
+
+/* Add styles for recap messages */
+.recap-message {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  white-space: pre-line;
+}
+
+.recap-message::before {
+  content: "📖";
+  margin-right: 8px;
+}

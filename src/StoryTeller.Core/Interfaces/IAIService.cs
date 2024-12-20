@@ -2,6 +2,9 @@
 
 public interface IAIService
 {
-    Task<string> GenerateStoryResponseAsync(string prompt, int numberOfOptions = 3, CancellationToken cancellationToken = default);
-    Task<List<string>> GenerateStoryOptionsAsync(string context, int numberOfOptions = 3, CancellationToken cancellationToken = default);
+    Task<List<string>> GenerateStoryOptionsAsync(
+        string context, 
+        int currentIteration = 1,
+        int totalIterations = 3,
+        int numberOfOptions = 3);
 } 

@@ -1,88 +1,85 @@
-namespace StoryTeller.Infrastructure.Services;
+﻿using System.Text.Json;
 using StoryTeller.Core.Interfaces;
-using StoryTeller.Core.DTOs;
-using System.Text.Json;
+
+namespace StoryTeller.Infrastructure.Services;
 
 public class ResponseService : IResponseService
 {
-    private readonly string[] _responses;
-    private readonly Random _random = new();
-    private readonly string _chatLogPath;
     private readonly string _responsesPath;
+    private readonly ILogger<ResponseService> _logger;
+    private static readonly object _lock = new();
 
-    public ResponseService()
+    public ResponseService(ILogger<ResponseService> logger)
     {
+        _logger = logger;
         var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-        _responsesPath = Path.Combine(baseDir, "Data", "responses.txt");
-        _chatLogPath = Path.Combine(baseDir, "Data", "chatlog.json");
-
-        EnsureDirectoryExists();
-        EnsureResponsesFileExists();
-        EnsureChatLogExists();
-
-        _responses = File.ReadAllLines(_responsesPath);
+        _responsesPath = Path.Combine(baseDir, "Data", "options.json");
     }
 
-    private void EnsureDirectoryExists()
+    private async Task EnsureDirectoryExistsAsync()
     {
         var dataDir = Path.GetDirectoryName(_responsesPath);
         if (!Directory.Exists(dataDir))
         {
             Directory.CreateDirectory(dataDir!);
         }
-    }
-
-    private void EnsureResponsesFileExists()
-    {
         if (!File.Exists(_responsesPath))
         {
-            var defaultResponses = new[]
+            await File.WriteAllTextAsync(_responsesPath, JsonSerializer.Serialize(new List<string>()));
+        }
+    }
+
+    public async Task<List<string>> GetOptionsAsync()
+    {
+        try
+        {
+            string json;
+            lock (_lock)
             {
-                "Hello! Let me continue your story...",
-                "Here's what happens next in your tale...",
-                "The story takes an interesting turn...",
-                "Your character encounters a surprising situation...",
-                "A mysterious event unfolds...",
-                "Suddenly, everything changes when..."
-            };
-            File.WriteAllLines(_responsesPath, defaultResponses);
-        }
-    }
+                if (!File.Exists(_responsesPath))
+                {
+                    return new List<string>();
+                }
+                json = File.ReadAllText(_responsesPath);
+            }
 
-    private void EnsureChatLogExists()
-    {
-        if (!File.Exists(_chatLogPath))
+            return await Task.Run(() => 
+                JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>());
+        }
+        catch (Exception ex)
         {
-            File.WriteAllText(_chatLogPath, "[]");
+            _logger.LogError(ex, "Error reading options");
+            return new List<string>();
         }
     }
 
-    public string GetRandomResponse()
+    public async Task SaveOptionsAsync(List<string> options)
     {
-        var options = new List<string>();
-        for (int i = 0; i < 3; i++)
+        try
         {
-            var index = _random.Next(_responses.Length);
-            options.Add(_responses[index]);
+            var json = JsonSerializer.Serialize(options, new JsonSerializerOptions 
+            { 
+                WriteIndented = true 
+            });
+
+            await File.WriteAllTextAsync(_responsesPath, json);
         }
-        return JsonSerializer.Serialize(options);
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error saving options");
+            throw;
+        }
     }
 
-    public async Task SaveChatAsync(string prompt)
+    public static async Task<ResponseService> CreateAsync(ILogger<ResponseService> logger)
     {
-        var chats = await LoadChatsAsync();
-        chats.Add(new ChatLogDTO { Id = 1, Prompt = prompt, Timestamp = DateTime.UtcNow });
-        await File.WriteAllTextAsync(_chatLogPath, JsonSerializer.Serialize(chats));
+        var service = new ResponseService(logger);
+        await service.InitializeAsync();
+        return service;
     }
 
-    public async Task<List<ChatLogDTO>> GetChatsAsync()
+    private async Task InitializeAsync()
     {
-        return await LoadChatsAsync();
-    }
-
-    private async Task<List<ChatLogDTO>> LoadChatsAsync()
-    {
-        var json = await File.ReadAllTextAsync(_chatLogPath);
-        return JsonSerializer.Deserialize<List<ChatLogDTO>>(json) ?? new();
+        await EnsureDirectoryExistsAsync();
     }
 } 

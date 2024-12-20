@@ -37,14 +37,22 @@ export class PromptSearchComponent implements AfterViewChecked {
     } catch(err) {}
   }
 
-  private async getRandomResponse(): Promise<string[]> {
-    try {
-      const response = await firstValueFrom(this.promptService.getRandomResponse());
-      return response.options;
-    } catch (error) {
-      console.error('Error getting random response:', error);
-      return ['I am thinking about what happens next...'];
-    }
+  private async addUserMessage(text: string, id: number): Promise<void> {
+    this.messages.push({
+      id,
+      text,
+      isUser: true
+    });
+
+    // Get options from the AI service
+    const options = await firstValueFrom(this.promptService.getOptions());
+    options.options.forEach(response => {
+      this.messages.push({
+        id: -this.messages.length,
+        text: response,
+        isUser: false
+      });
+    });
   }
 
   private async getAllPrompts(): Promise<string> {
@@ -60,34 +68,6 @@ export class PromptSearchComponent implements AfterViewChecked {
     } catch (error) {
       console.error('Error getting chat prompts:', error);
       return 'Failed to retrieve chat messages.';
-    }
-  }
-
-  private async addUserMessage(text: string, id: number): Promise<void> {
-    this.messages.push({
-      id,
-      text,
-      isUser: true
-    });
-
-    // Get response based on command
-    if (text.trim().toLowerCase() === "getallprompts") {
-      const allPromptsResponse = await this.getAllPrompts();
-      this.messages.push({
-        id: -this.messages.length,
-        text: allPromptsResponse,
-        isUser: false
-      });
-    } else {
-      // Get array of responses and add each as separate message
-      const aiResponses = await this.getRandomResponse();
-      aiResponses.forEach(response => {
-        this.messages.push({
-          id: -this.messages.length,
-          text: response,
-          isUser: false
-        });
-      });
     }
   }
 

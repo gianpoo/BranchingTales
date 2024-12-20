@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { PromptService } from './core/services/prompt.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 interface ChatMessage {
   id?: number;
@@ -9,6 +10,11 @@ interface ChatMessage {
   isOption?: boolean;
   isSelected?: boolean;
   disabled?: boolean;
+}
+
+// Add this new interface for recap messages
+interface RecapMessage extends ChatMessage {
+  isRecap?: boolean;
 }
 
 @Component({
@@ -23,7 +29,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   isLoading = false;
   error = '';
   isChatMode = false;
-  messages: ChatMessage[] = [];
+  messages: RecapMessage[] = [];
   @ViewChild('chatInput') chatInput!: ElementRef;
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   iterationLimit: number = 3;
@@ -49,10 +55,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.error = '';
 
     this.promptService.create(this.storyPrompt, this.iterationLimit).subscribe({
-      next: (response) => {
+      next: () => {
         this.isChatMode = true;
         this.messages = [{ text: this.storyPrompt, isUser: true }];
-        this.getRandomResponse();
+        this.getOptions();
         this.storyPrompt = '';
         setTimeout(() => {
           this.chatInput?.nativeElement?.focus();
@@ -62,102 +68,66 @@ export class AppComponent implements OnInit, AfterViewChecked {
         console.error('Error starting story:', err);
         this.error = 'Failed to start the story. Please try again.';
         this.isLoading = false;
-      },
-      complete: () => {
-        this.isLoading = false;
       }
     });
   }
 
   onSend() {
-    if (!this.storyPrompt.trim()) return;
-
-    if (this.storyPrompt.toLowerCase() === 'get all prompts') {
-      this.messages.push({ text: this.storyPrompt, isUser: true });
-      this.promptService.getChatPrompts(1).subscribe({
-        next: (response: { prompts: Array<{ id: number, text: string }> }) => {
-          if (!response.prompts?.length) {
-            this.messages.push({ text: 'No prompts found.', isUser: false });
-          } else {
-            const allPromptsMessage = response.prompts
-              .map((p: { id: number, text: string }) => p.text)
-              .join(' ');
-            this.messages.push({ 
-              text: allPromptsMessage, 
-              isUser: false
-            });
-          }
-          this.storyPrompt = '';
-        },
-        error: (err: Error) => {
-          console.error('Error getting all prompts:', err);
-          this.messages.push({ text: 'Failed to retrieve prompts.', isUser: false });
-        }
-      });
+    if (!this.storyPrompt.trim()) {
+      this.error = 'Please enter your message';
       return;
     }
 
-    this.messages.push({ text: this.storyPrompt, isUser: true });
+    this.isLoading = true;
+    this.error = '';
+
     this.promptService.addPrompt(this.storyPrompt).subscribe({
-      next: (response) => {
-        console.log('Prompt added:', response);
-        this.getRandomResponse();
+      next: () => {
+        // Add user message
+        this.messages.push({
+          text: this.storyPrompt,
+          isUser: true
+        });
+        this.storyPrompt = '';
+
+        // Get AI options
+        this.getOptions();
       },
       error: (err: HttpErrorResponse) => {
-        console.error('Error adding prompt:', err);
-        this.messages.push({ text: 'Failed to save your message.', isUser: false });
+        console.error('Error sending message:', err);
+        this.isLoading = false;
+        this.error = 'Failed to send message';
       }
     });
-
-    this.storyPrompt = '';
   }
 
-  private getRandomResponse() {
-    // First get all prompts
-    this.promptService.getChatPrompts(1).subscribe({
-      next: (response: { prompts: Array<{ id: number, text: string }> }) => {
-        if (response.prompts?.length) {
-          const allPromptsMessage = response.prompts
-            .map((p: { id: number, text: string }) => p.text)
-            .join(' ');
-          this.messages.push({ 
-            text: allPromptsMessage, 
-            isUser: false
-          });
-        }
-
-        // Then get and show the options
-        this.promptService.getRandomResponse().subscribe({
-          next: (response) => {
-            if (response.options && response.options.length > 0) {
-              // Clear any previous options first
-              this.messages = this.messages.filter(m => !m.isOption);
-              
-              // Add the question
-              this.messages.push({ 
-                text: "How would you like the story to continue?", 
-                isUser: false 
-              });
-              
-              // Add new options
-              response.options.forEach(option => {
-                this.messages.push({ 
-                  text: option, 
-                  isUser: false,
-                  isOption: true,
-                  isSelected: false,
-                  disabled: false
-                });
-              });
-            }
-          },
-          error: (err: HttpErrorResponse) => {
-            console.error('Error getting response:', err);
-          }
+  private getOptions() {
+    this.promptService.getOptions().subscribe({
+      next: (response) => {
+        // Add a recap message first
+        const recap = this.generateRecap();
+        this.messages.push({
+          text: `Story so far:\n${recap}`,
+          isUser: false,
+          isRecap: true
         });
+
+        // Then add the options
+        response.options.forEach(option => {
+          this.messages.push({
+            text: option,
+            isUser: false,
+            isOption: true,
+            isSelected: false,
+            disabled: false
+          });
+        });
+        this.isLoading = false;
       },
-      error: (err: Error) => {
-        console.error('Error getting all prompts:', err);
+      error: (err: HttpErrorResponse) => {
+        console.error('Error getting options:', err);
+        this.isLoading = false;
+        this.error = 'Failed to get story options';
       }
     });
   }
@@ -165,16 +135,30 @@ export class AppComponent implements OnInit, AfterViewChecked {
   selectOption(selectedMessage: ChatMessage) {
     if (!selectedMessage.isOption || selectedMessage.disabled) return;
 
-    // Disable all options
-    this.messages
-      .filter(m => m.isOption)
-      .forEach(m => {
-        m.disabled = true;
-        m.isSelected = m === selectedMessage;
-      });
+    // Remove all options from messages array
+    this.messages = this.messages.filter(m => !m.isOption);
 
-    this.storyPrompt = selectedMessage.text;
-    this.onSend();
+    this.isLoading = true;
+    this.error = '';
+
+    // Send the selected option
+    this.promptService.addPrompt(selectedMessage.text).subscribe({
+      next: () => {
+        // Add user's choice as a message
+        this.messages.push({
+          text: selectedMessage.text,
+          isUser: true
+        });
+
+        // Get new options
+        this.getOptions();
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error('Error sending option:', err);
+        this.error = 'Failed to send your choice';
+        this.isLoading = false;
+      }
+    });
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -220,5 +204,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   getCursorStyle(option: ChatMessage): string {
     return option.disabled ? 'default' : 'pointer';
+  }
+
+  // Add this new method to generate recap
+  private generateRecap(): string {
+    return this.messages
+      .filter(m => m.isUser && !m.isOption)
+      .map(m => m.text)
+      .join('\n');
   }
 }

@@ -51,7 +51,8 @@
         <div *ngIf="!message.isOption" 
              class="message" 
              [class.user-message]="message.isUser"
-             [class.bot-message]="!message.isUser">
+             [class.bot-message]="!message.isUser"
+             [class.recap-message]="message.isRecap">
           {{ message.text }}
         </div>
         
@@ -63,7 +64,7 @@
                  class="message option-message"
                  [class.selected-option]="option.isSelected"
                  [class.disabled-option]="option.disabled"
-                 (click)="handleOptionClick(option)"
+                 (click)="selectOption(option)"
                  [style.cursor]="getCursorStyle(option)">
               {{ option.text }}
             </div>
